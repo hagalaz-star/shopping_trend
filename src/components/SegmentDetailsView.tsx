@@ -6,8 +6,6 @@ import { FaHandHoldingHeart } from "react-icons/fa";
 import { FaShoppingCart } from "react-icons/fa";
 import { Pie } from "react-chartjs-2";
 import type { TooltipItem } from "chart.js";
-import { plugins } from "chart.js/auto";
-import { callback } from "chart.js/helpers";
 
 interface SegmentDetailsViewProps {
   selectedClusterId: number | null;
@@ -37,7 +35,9 @@ export default function SegmentDetailsView({
       (sum, cluster) => sum + cluster.avg_purchase_amount,
       0
     );
-    overall_Avg_purchase_amount = total_Avg_purchase_amount / clusters.length;
+    overall_Avg_purchase_amount = Number(
+      (total_Avg_purchase_amount / clusters.length).toFixed(2)
+    );
   }
   // 바 그래프 데이터 객체 만들기
   const data = {
@@ -85,8 +85,41 @@ export default function SegmentDetailsView({
     ],
   };
 
-  const chartOptions = {
+  const barChartOptions = {
     responsive: true,
+    maintainAspectRatio: false,
+    indexAxis: "y" as const,
+
+    plugins: {
+      legend: {
+        position: "top" as const,
+      },
+      title: {
+        display: true,
+        text: "평균 구매액 비교",
+        font: { size: 16 },
+      },
+      tooltip: {
+        callbacks: {
+          label: function (context: TooltipItem<"bar">) {
+            let label = context.dataset.label || "";
+
+            if (label) {
+              label += ": ";
+            }
+
+            if (context.parsed.x !== null && context.parsed.x !== undefined) {
+              label += "$" + context.parsed.x;
+            }
+            return label;
+          },
+        },
+      },
+    },
+  };
+  const pieChartOptions = {
+    responsive: true,
+    maintainAspectRatio: false,
     plugins: {
       tooltip: {
         callbacks: {
@@ -113,9 +146,9 @@ export default function SegmentDetailsView({
 
   return (
     <>
-      <h2 className="text-2xl font-bold mb-4 text-gray-800 text-center">
+      <h3 className="text-2xl font-bold mb-4 text-gray-700 text-center">
         {selectedCluster.cluster_name}
-      </h2>
+      </h3>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 my-6">
         <div className="bg-white p-6 rounded-xl shadow-lg flex-1 min-w-[200px]">
           <div className="flex items-center justify-center sm:justify-start space-x-3 sm:space-x-4">
@@ -147,7 +180,7 @@ export default function SegmentDetailsView({
           </div>
         </div>
 
-        <div className="bg-white p-6 rounded-xl shadow-lg flex-1">
+        <div className="bg-white p-6 rounded-xl shadow-lg flex-1 min-w-[200px]">
           <div className="flex items-center justify-center sm:justify-start space-x-3 sm:space-x-4">
             <div className="flex-shrink-0 p-2 bg-purple-100 rounded-full">
               <FaShoppingCart className="h-6 w-6 sm:h-7 sm:w-7 text-purple-600" />
@@ -164,47 +197,44 @@ export default function SegmentDetailsView({
           </div>
         </div>
       </div>
-
       <div className="mt-8 bg-white p-6 rounded-xl shadow-lg">
-        <h3 className="text-xl font-semibold mb-4 text-gray-400">
+        <h3 className="text-2xl font-bold mb-4 text-gray-700 text-center">
           평균 구매액 시각화
         </h3>
-        <div>
-          <Bar data={data} />
-        </div>
-
-        <div>
-          <h3>구독비율</h3>
-          <div>
-            <Pie data={subscriptionData} options={chartOptions} />
+        <div className="flex gap-6">
+          <div className="flex-1 min-w-0">
+            <div className="relative h-[400px] w-full">
+              <Bar data={data} options={barChartOptions} />
+            </div>
           </div>
+
+          <div className="flex-1 min-w-0">
+            <div className="relative h-[400px] w-full mx-auto max-w-sm">
+              <Pie data={subscriptionData} options={pieChartOptions} />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="mt-8 bg-white p-6 rounded-xl shadow-lg">
+        <h3 className="text-2xl font-semibold  mb-4  text-gray-700 text-center">
+          마케팅 제안
+        </h3>
+        <div>
+          {(selectedCluster.marketing_suggestion || "")
+            .split(/(?<=\.)\s+/)
+            .filter((sentence) => sentence.trim() !== "")
+            .map((sentence, index) => {
+              return (
+                <p
+                  key={index}
+                  className=" text-base text-gray-700 text-center leading-relaxed p-2 mb-2"
+                >
+                  {sentence.trim()}
+                </p>
+              );
+            })}
         </div>
       </div>
     </>
   );
-}
-
-{
-  /* <div>
-            <strong className="font-medium">정기구매 할인 제안</strong>
-            <p className="text-gray-700">
-              {selectedCluster.marketing_suggestion}
-            </p>
-          </div> */
-}
-
-{
-  /* <div className="bg-amber-100 p-4 rounded-lg shadow">
-            <strong className="font-medium">평균 구매량</strong>
-            <p className="text-gray-700">
-              {selectedCluster.avg_purchase_amount}
-            </p>
-          </div> */
-}
-
-{
-  /* <div>
-            <strong className="font-medium">구독 비율:</strong>
-            <p className="text-gray-700">{selectedCluster.subscription_rate}</p>
-          </div> */
 }
