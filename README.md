@@ -1,66 +1,100 @@
+# 🛍️ 고객 쇼핑 트렌드 대시보드 TOOL
+
+이 프로젝트는 고객 쇼핑 데이터를 분석하여 고객 그룹을 나누고, 각 그룹별 특징을 시각화하여 맞춤형 마케팅 아이디어를 제공하는 웹 대시보드입니다.
+
+**Live Demo:** [https://shoppingtrendai.netlify.app/](https://shoppingtrendai.netlify.app/)
+
+## 🚀 주요 기능
+
+- K-평균 클러스터링 기반 고객 세분화 결과 시각화
+- 클러스터별 주요 지표 (고객 수, 평균 연령, 구매 빈도 등) 표시
+- 세그먼트별 구매 특성 비교 (평균 구매액, 구독률 등)
+- AI 기반 마케팅 제안 (Gemini API 연동)
+
+## 🛠️ 기술 스택
+
+- **Frontend:** React, TypeScript, Next.js (App Router)
+- **Styling:** Tailwind CSS
+- **Charts:** Chart.js
+- **Data Analysis (Offline):** Python, Jupyter Notebook (상세 과정은 아래 참고)
+- **Deployment:** Netlify
+
 ---
 
 ## 📊 고객 쇼핑 트렌드 데이터 분석 과정 요약
 
-대시보드에 사용된 고객 세분화 데이터는 `shopping_trends_updated.csv` 파일에 대한 분석을 통해 얻어졌습니다. 
-➡️ **[전체 분석 과정 및 코드 보기](./notebooks/Shopping_Trends.ipynb)** _(↑ `Shopping_Trends.ipynb` 파일을 프로젝트 내 `notebooks/` 폴더에 위치시키는 것을 권장합니다. 경로는 실제 파일 위치에 맞게 수정해주세요.)_
+대시보드에 사용된 고객 세분화 데이터는 `shopping_trends_updated.csv` 파일에 대한 분석을 통해 얻어졌습니다. 전체 분석 과정과 코드는 아래 Jupyter Notebook에서 확인하실 수 있습니다.
+
+➡️ **[전체 분석 과정 및 코드 보기](./notebooks/Shopping_Trends.ipynb)**
+_(↑ `Shopping_Trends.ipynb` 파일은 프로젝트 내 `notebooks/` 폴더에 위치해야 합니다.)_
 
 ### 1. 분석 목표
-* 고객의 구매 행동 데이터(나이, 구매 금액, 구독 상태, 구매 빈도 등)를 분석하여 의미 있는 고객 그룹(세그먼트)을 정의합니다.
-* 각 세그먼트의 주요 특징을 파악하여, 이를 기반으로 대시보드에 시각화하고 맞춤형 마케팅 전략 수립에 활용할 수 있는 기초 자료를 생성하는 것을 목표로 합니다.
+
+- 고객의 구매 행동 데이터(나이, 구매 금액, 구독 상태, 구매 빈도 등)를 분석하여 의미 있는 고객 그룹(세그먼트)을 정의합니다.
+- 각 세그먼트의 주요 특징을 파악하여, 이를 기반으로 대시보드에 시각화하고 맞춤형 마케팅 전략 수립에 활용할 수 있는 기초 자료를 생성하는 것을 목표로 합니다.
 
 ### 2. 데이터 출처 및 설명
-* **사용한 데이터셋:** `shopping_trends_updated.csv` 파일
-* **주요 포함 정보:** (여기는 현재처럼 목록으로 두거나, 간략한 설명 후 노트북에서 상세 내용을 확인하도록 안내할 수 있습니다.)
-    * Customer ID, Age, Gender, ... , Frequency of Purchases (총 18개 컬럼)
-* 데이터 기본 탐색 결과, 결측치는 없는 것으로 확인되었습니다.
+
+- **사용한 데이터셋:** `shopping_trends_updated.csv` 파일
+  - _(선택 사항: 만약 Kaggle 등 외부 출처라면 여기에 명시하고 링크를 추가할 수 있습니다.)_
+- **주요 포함 정보:** (총 18개 컬럼)
+  - Customer ID, Age, Gender, Item Purchased, Category
+  - Purchase Amount (USD), Location, Size, Color, Season
+  - Review Rating, Subscription Status, Shipping Type
+  - Discount Applied, Promo Code Used, Previous Purchases
+  - Payment Method, Frequency of Purchases
+- 데이터 기본 탐색 결과, 결측치는 없는 것으로 확인되었습니다.
 
 ### 3. 분석 과정 및 방법론
 
 #### 데이터 불러오기 및 초기 탐색
-* Pandas 라이브러리를 사용하여 CSV 데이터를 로드했습니다.
-* `head()`, `tail()`, `info()`, `describe()` 함수를 통해 데이터의 기본적인 구조와 통계치를 확인했습니다.
+
+- Pandas 라이브러리를 사용하여 CSV 데이터를 로드하고, 데이터의 기본적인 구조와 통계치를 확인했습니다. (`head()`, `tail()`, `info()`, `describe()` 사용)
 
 #### 피처 선택 및 전처리
-* 고객 세분화를 위해 주요 특성으로 판단되는 'Age', 'Purchase Amount (USD)', 'Subscription Status', 'Frequency of Purchases' 4가지 피처를 선택했습니다.
-* 범주형 데이터인 'Subscription Status'와 'Frequency of Purchases'에 대해 Pandas의 `get_dummies()` 함수를 사용하여 원-핫 인코딩을 수행했습니다.
-* 모델 학습을 위해 모든 부울(boolean) 타입 데이터를 정수형(0 또는 1)으로 변환했습니다.
+
+- 고객 세분화를 위해 'Age', 'Purchase Amount (USD)', 'Subscription Status', 'Frequency of Purchases' 4가지 주요 피처를 선택했습니다.
+- 범주형 데이터는 Pandas의 `get_dummies()` 함수를 사용하여 원-핫 인코딩 처리 후, 모든 데이터를 숫자형으로 변환했습니다.
 
 #### 데이터 스케일링
-* 선택된 숫자형 피처들에 대해 Scikit-learn의 `StandardScaler`를 사용하여 표준 정규 분포로 스케일링을 진행했습니다. 이는 각 피처가 동일한 범위의 값을 갖도록 하여 K-평균 클러스터링 알고리즘의 성능을 향상시키기 위함입니다.
+
+- 선택된 숫자형 피처들에 대해 Scikit-learn의 `StandardScaler`를 사용하여 표준화 스케일링을 진행했습니다. 이는 K-평균 클러스터링 알고리즘의 성능 향상을 위함입니다.
 
 #### 고객 세분화 모델링 (K-평균 클러스터링)
-* **최적 클러스터 개수(K) 결정:**
-    * 엘보우 방법(Elbow Method)을 사용하여 K값 변화에 따른 WCSS 감소폭을 시각화하여 분석했습니다.
-    * 실루엣 분석(Silhouette Analysis)을 통해 각 K값에 대한 평균 실루엣 점수를 계산했으며, K=7일 때 0.5176으로 가장 높은 점수를 보였습니다.
-* **최종 모델 학습:** 위의 분석 결과를 바탕으로 최종 클러스터 개수를 7개(`final_k = 7`)로 결정하고, K-평균 클러스터링 모델을 학습시켜 각 고객에게 클러스터 레이블을 할당했습니다.
+
+- **최적 클러스터 개수(K) 결정:**
+  - **엘보우 방법(Elbow Method):** K값 변화에 따른 WCSS 감소폭을 시각화하여 분석했습니다.
+    ![Elbow Method for Optimal K](./notebooks/images/elbow_method.png)
+    _(↑ `elbow_method.png`는 `notebooks/images/` 폴더에 저장되어야 합니다.)_
+  - **실루엣 분석(Silhouette Analysis):** 평균 실루엣 점수를 계산했으며, K=7일 때 0.5176으로 가장 높은 점수를 보여 최종 클러스터 수를 7개로 결정했습니다.
+    ![Silhouette Analysis for Optimal K](./notebooks/images/silhouette_analysis.png)
+    _(↑ `silhouette_analysis.png`는 `notebooks/images/` 폴더에 저장되어야 합니다.)_
+- **최종 모델 학습:** K=7로 설정하여 K-평균 클러스터링 모델을 학습시키고, 각 고객에게 클러스터 레이블을 할당했습니다.
 
 #### 세그먼트 프로파일링 및 결과 저장
-* 생성된 7개 클러스터에 대해 각 피처(나이, 구매 금액, 구독 상태, 구매 빈도)의 평균값을 계산하여 그룹별 특징을 분석했습니다.
-* 각 클러스터별 고객 수를 집계했습니다.
-* 분석된 클러스터별 특징(평균 연령, 평균 구매액, 구독률, 주요 구매 빈도)과 함께, 각 클러스터에 맞는 설명적인 이름 및 마케팅 제안을 정의했습니다.
-* 이 모든 정보를 담아 `customer_segments_k7.json` 파일로 저장하여, React 대시보드 애플리케이션에서 활용할 수 있도록 준비했습니다.
+
+- 생성된 7개 클러스터의 특징(평균 연령, 구매액, 구독률, 주요 구매 빈도 등)을 분석하고, 설명적인 이름 및 마케팅 제안을 정의했습니다. (예: "2주 주기 실속형 고객")
+- 이 모든 정보를 `customer_segments_k7.json` 파일로 저장하여, 대시보드 애플리케이션에서 활용하도록 준비했습니다.
 
 #### (참고) PCA를 활용한 시각화
-* K-평균 클러스터링 결과를 시각적으로 탐색하기 위해 주성분 분석(PCA)을 사용하여 고차원 데이터를 2차원으로 축소하고, 클러스터별로 색상을 구분하여 산점도를 시각화했습니다. (노트북 내 K=3, K=5, K=7에 대한 시각화 포함)
+
+- K-평균 클러스터링 결과를 시각적으로 탐색하기 위해 PCA를 사용하여 데이터를 2차원으로 축소하고, 클러스터별로 산점도를 시각화했습니다.
+  ![K-Means Clustering (K=7) visualized with 2D PCA](./notebooks/images/pca_clusters_k7.png)
+  _(↑ `pca_clusters_k7.png`는 `notebooks/images/` 폴더에 저장되어야 합니다.)_
 
 ### 4. 사용된 주요 기술 스택 (데이터 분석)
-* Python
-* **[Pandas](https://pandas.pydata.org/)** (데이터 조작 및 분석)
-* NumPy (수치 계산)
-* Scikit-learn (StandardScaler, PCA, KMeans, silhouette_score 등 머신러닝 모델링)
-* Matplotlib, Seaborn (데이터 시각화)
+
+- Python
+- **[Pandas](https://pandas.pydata.org/)** (데이터 조작 및 분석)
+- NumPy (수치 계산)
+- Scikit-learn (StandardScaler, PCA, KMeans, silhouette_score 등 머신러닝)
+- Matplotlib, Seaborn (데이터 시각화)
 
 ### 5. 분석 결과의 대시보드 애플리케이션 활용 방안
-본 Jupyter Notebook을 통해 생성된 `customer_segments_k7.json` 파일은 `shopping_trend` 대시보드의 핵심 데이터 소스로 사용됩니다. 이 JSON 파일은 다음과 같은 정보를 포함하며, 대시보드에서 다양한 형태로 시각화되고 활용됩니다:
-* 클러스터 ID 및 이름
-* 고객 수
-* 평균 연령
-* 평균 구매액 (USD)
-* 구독률
-* 주요 구매 빈도
-* 기본 마케팅 제안
 
-이 정보들은 대시보드에서 표, 카드, 차트 형태로 시각화되어 사용자에게 직관적인 인사이트를 제공하며, AI 기반 마케팅 제안 생성 기능의 입력 데이터로도 활용됩니다.
+`customer_segments_k7.json` 파일의 데이터는 대시보드에서 다음과 같이 활용됩니다:
+
+- 각 고객 그룹의 특징(고객 수, 평균 연령, 평균 구매액 등)을 차트와 카드로 시각화합니다.
+- AI 마케팅 제안 기능의 기초 입력 정보로 사용됩니다.
 
 ---
