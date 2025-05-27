@@ -33,6 +33,9 @@ export default function AiSuggestionBox({ clusterData }: AiSuggestionProps) {
       구독률: 약 ${(clusterData.subscription_rate * 100).toFixed(1)}%
       현재 기본 마케팅 제안: ${clusterData.marketing_suggestion}
 
+      각 전략과 액션 플랜, 그리고 문단들은 명확한 줄바꿈(예: 문단 사이에 빈 줄 한 칸 삽입)을 사용하여 구분하고, 마크다운 형식(**, ##, * 등)은 사용하지 말아주십시오. 일반 텍스트로만 답변해주세요.
+
+
       추가적인 마케팅 전략 제안 (3가지):
     `;
 
@@ -57,6 +60,31 @@ export default function AiSuggestionBox({ clusterData }: AiSuggestionProps) {
     } finally {
       setIsLoading(false);
     }
+  };
+
+  const renderSuggestion = (suggestionText: string) => {
+    const strategies = suggestionText
+      .split(/\n\s*\d\.\s+/)
+      .filter((s) => s.trim() !== "");
+
+    if (
+      strategies.length === 0 ||
+      (strategies.length === 1 && !suggestionText.match(/\n\s*\d\.\s+/))
+    )
+      return (
+        <p className="text-gray-700 whitespace-pre-wrap leading-relaxed">
+          {suggestionText}
+        </p>
+      );
+
+    return strategies.map((strategy, index) => (
+      <div key={index} className="mb-4 p-3 bg-gray-50 rounded">
+        <h5 className="font-semibold text-indigo-700 mb-1">전략 {index + 1}</h5>
+        <p className="text-gray-700 whitespace-pre-wrap leading-relaxed">
+          {strategy.trim()}
+        </p>
+      </div>
+    ));
   };
 
   return (
@@ -94,12 +122,13 @@ export default function AiSuggestionBox({ clusterData }: AiSuggestionProps) {
             오류: {error}
           </p>
         )}
+
         {aiSuggestion && !isLoading && (
           <div className="mt-6 p-4 bg-indigo-50 rounded-lg border border-indigo-200">
             <h4 className="font-semibold text-indigo-800 mb-2">AI 추천:</h4>
-            <p className="text-gray-700 whitespace-pre-wrap leading-relaxed">
-              {aiSuggestion}
-            </p>
+            <div className="text-gray-700 whitespace-pre-wrap leading-relaxed">
+              {renderSuggestion(aiSuggestion)}
+            </div>
           </div>
         )}
       </div>
