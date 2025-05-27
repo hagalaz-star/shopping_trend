@@ -1,36 +1,52 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+고객 쇼핑 트렌드 데이터 분석
 
-## Getting Started
+1. 분석 목표
+   고객의 구매 행동 데이터(나이, 구매 금액, 구독 상태, 구매 빈도 등)를 분석하여 의미 있는 고객 그룹(세그먼트)을 정의합니다.
+   각 세그먼트의 주요 특징을 파악하여, 이를 기반으로 대시보드에 시각화하고 맞춤형 마케팅 전략 수립에 활용할 수 있는 기초 자료를 생성하는 것을 목표로 합니다.
+2. 데이터 출처 및 설명
+   사용한 데이터셋: shopping_trends_updated.csv 파일
+   주요 포함 정보:
+   Customer ID, Age, Gender, Item Purchased, Category, Purchase Amount (USD), Location, Size, Color, Season, Review Rating, Subscription Status, Shipping Type, Discount Applied, Promo Code Used, Previous Purchases, Payment Method, Frequency of Purchases (총 18개 컬럼)
+   데이터 기본 탐색 결과, 결측치는 없는 것으로 확인되었습니다.
+3. 분석 과정 및 방법론
+   데이터 불러오기 및 초기 탐색:
 
-First, run the development server:
+Pandas 라이브러리를 사용하여 CSV 데이터를 로드했습니다.
+head(), tail(), info(), describe() 함수를 통해 데이터의 기본적인 구조와 통계치를 확인했습니다.
+피처 선택 및 전처리:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+고객 세분화를 위해 주요 특성으로 판단되는 'Age', 'Purchase Amount (USD)', 'Subscription Status', 'Frequency of Purchases' 4가지 피처를 선택했습니다.
+범주형 데이터인 'Subscription Status'와 'Frequency of Purchases'에 대해 Pandas의 get_dummies() 함수를 사용하여 원-핫 인코딩을 수행했습니다.
+모델 학습을 위해 모든 부울(boolean) 타입 데이터를 정수형(0 또는 1)으로 변환했습니다.
+데이터 스케일링:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+선택된 숫자형 피처들에 대해 Scikit-learn의 StandardScaler를 사용하여 표준 정규 분포로 스케일링을 진행했습니다. 이는 각 피처가 동일한 범위의 값을 갖도록 하여 K-평균 클러스터링 알고리즘의 성능을 향상시키기 위함입니다.
+고객 세분화 모델링 (K-평균 클러스터링):
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+최적 클러스터 개수(K) 결정:
+엘보우 방법(Elbow Method)을 사용하여 K값 변화에 따른 WCSS(Within-Cluster Sum of Squares) 감소폭을 시각화하여 분석했습니다.
+실루엣 분석(Silhouette Analysis)을 통해 각 K값에 대한 평균 실루엣 점수를 계산했으며, K=7일 때 0.5176으로 가장 높은 점수를 보였습니다.
+최종 모델 학습: 위의 분석 결과를 바탕으로 최종 클러스터 개수를 7개(final_k = 7)로 결정하고, K-평균 클러스터링 모델을 학습시켜 각 고객에게 클러스터 레이블을 할당했습니다.
+세그먼트 프로파일링 및 결과 저장:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+생성된 7개 클러스터에 대해 각 피처(나이, 구매 금액, 구독 상태, 구매 빈도)의 평균값을 계산하여 그룹별 특징을 분석했습니다.
+각 클러스터별 고객 수를 집계했습니다.
+분석된 클러스터별 특징(평균 연령, 평균 구매액, 구독률, 주요 구매 빈도)과 함께, 각 클러스터에 맞는 설명적인 이름 및 마케팅 제안을 정의했습니다.
+이 모든 정보를 담아 customer_segments_k7.json 파일로 저장하여, React 대시보드 애플리케이션에서 활용할 수 있도록 준비했습니다.
+(참고) PCA를 활용한 시각화:
 
-## Learn More
+K-평균 클러스터링 결과를 시각적으로 탐색하기 위해 주성분 분석(PCA)을 사용하여 고차원 데이터를 2차원으로 축소하고, 클러스터별로 색상을 구분하여 산점도를 시각화했습니다. (노트북 내 K=3, K=5, K=7에 대한 시각화 포함) 4. 사용된 주요 기술 스택
+Python
+Pandas, NumPy (데이터 처리 및 분석)
+Scikit-learn (StandardScaler, PCA, KMeans, silhouette_score 등 머신러닝 모델링)
+Matplotlib, Seaborn (데이터 시각화) 5. 분석 결과의 대시보드 애플리케이션 활용 방안
+본 Jupyter Notebook을 통해 생성된 customer_segments_k7.json 파일은 shopping_trend 대시보드의 핵심 데이터 소스로 사용됩니다. 이 JSON 파일은 다음과 같은 정보를 포함하며, 대시보드에서 다양한 형태로 시각화되고 활용됩니다:
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+클러스터 ID 및 이름: 각 고객 세그먼트의 고유 식별자와 설명적인 이름
+고객 수: 각 세그먼트에 속하는 고객의 수
+평균 연령: 세그먼트별 평균 고객 연령
+평균 구매액: 세그먼트별 평균 구매 금액 (USD)
+구독률: 세그먼트별 서비스 구독 비율
+주요 구매 빈도: 세그먼트를 대표하는 구매 빈도 패턴
+기본 마케팅 제안: 각 세그먼트의 특성에 기반한 초기 마케팅 아이디어
+이 정보들은 대시보드에서 표, 카드, 차트(예: 세그먼트별 평균 구매액 비교 막대그래프, 구독률 파이 차트) 형태로 시각화되어 사용자에게 직관적인 인사이트를 제공합니다. 또한, 선택된 고객 세그먼트의 상세 정보와 함께 AI 기반 마케팅 제안을 생성하는 기능의 입력 데이터로도 활용됩니다.
