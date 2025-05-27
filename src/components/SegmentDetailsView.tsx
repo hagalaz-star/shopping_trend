@@ -6,6 +6,7 @@ import { FaHandHoldingHeart } from "react-icons/fa";
 import { FaShoppingCart } from "react-icons/fa";
 import { Pie } from "react-chartjs-2";
 import type { TooltipItem } from "chart.js";
+import AiSuggestionBox from "./AiSuggestionBox";
 
 interface SegmentDetailsViewProps {
   selectedClusterId: number | null;
@@ -233,6 +234,12 @@ export default function SegmentDetailsView({
                 </p>
               );
             })}
+        </div>
+      </div>
+
+      <div className="mt-8 bg-white p-6 rounded-xl shadow-lg">
+        <div className="text-2xl font-semibold  mb-4  text-gray-700 text-center">
+          <AiSuggestionBox clusterData={selectedCluster} />
         </div>
       </div>
     </>
