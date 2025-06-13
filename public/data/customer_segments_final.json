@@ -1,0 +1,786 @@
+[
+    {
+        "cluster_id": 0,
+        "cluster_name": "2주 주기 실속형 고객",
+        "num_customers": 542,
+        "avg_age": 43.59,
+        "avg_purchase_amount": 59.05,
+        "subscription_rate": 0.2823,
+        "dominant_frequency": "Fortnightly",
+        "marketing_suggestion": "2주 주기로 필요한 생활용품이나 식료품 재구매 알림. 함께 구매하면 좋은 상품 추천으로 객단가 증대 유도.",
+        "top_items": [
+            {
+                "items": "Sneakers",
+                "count": 28,
+                "percentage": 5.17
+            },
+            {
+                "items": "Coat",
+                "count": 27,
+                "percentage": 4.98
+            },
+            {
+                "items": "Jacket",
+                "count": 26,
+                "percentage": 4.8
+            },
+            {
+                "items": "Sweater",
+                "count": 25,
+                "percentage": 4.61
+            },
+            {
+                "items": "Boots",
+                "count": 25,
+                "percentage": 4.61
+            }
+        ],
+        "top_categories": [
+            {
+                "category": "Clothing",
+                "count": 223,
+                "percentage": 41.14
+            },
+            {
+                "category": "Accessories",
+                "count": 170,
+                "percentage": 31.37
+            },
+            {
+                "category": "Footwear",
+                "count": 96,
+                "percentage": 17.71
+            }
+        ],
+        "top_location": [
+            {
+                "location": "Nebraska",
+                "count": 18,
+                "percentage": 3.32
+            },
+            {
+                "location": "Ohio",
+                "count": 18,
+                "percentage": 3.32
+            },
+            {
+                "location": "Alaska",
+                "count": 18,
+                "percentage": 3.32
+            }
+        ],
+        "top_season": [
+            {
+                "season": "Fall",
+                "count": 143,
+                "percentage": 26.38
+            },
+            {
+                "season": "Winter",
+                "count": 139,
+                "percentage": 25.65
+            },
+            {
+                "season": "Spring",
+                "count": 133,
+                "percentage": 24.54
+            },
+            {
+                "season": "Summer",
+                "count": 127,
+                "percentage": 23.43
+            }
+        ],
+        "top_payment": [
+            {
+                "payment": "Debit Card",
+                "count": 95,
+                "percentage": 17.53
+            },
+            {
+                "payment": "Credit Card",
+                "count": 94,
+                "percentage": 17.34
+            },
+            {
+                "payment": "Cash",
+                "count": 93,
+                "percentage": 17.16
+            }
+        ],
+        "discount_usage_rate": 44.83,
+        "review_rating_score": 3.76
+    },
+    {
+        "cluster_id": 1,
+        "cluster_name": "연례 방문형 고객",
+        "num_customers": 572,
+        "avg_age": 44.67,
+        "avg_purchase_amount": 60.17,
+        "subscription_rate": 0.2797,
+        "dominant_frequency": "Annually",
+        "marketing_suggestion": "연간 주요 세일 이벤트(블랙프라이데이, 연말 등) 집중 공략. 기념일 또는 생일 특별 쿠폰 발송으로 재방문 유도 및 고객 감사 메시지 전달.",
+        "top_items": [
+            {
+                "items": "Blouse",
+                "count": 32,
+                "percentage": 5.59
+            },
+            {
+                "items": "Dress",
+                "count": 31,
+                "percentage": 5.42
+            },
+            {
+                "items": "Shirt",
+                "count": 31,
+                "percentage": 5.42
+            },
+            {
+                "items": "Socks",
+                "count": 29,
+                "percentage": 5.07
+            },
+            {
+                "items": "Scarf",
+                "count": 29,
+                "percentage": 5.07
+            }
+        ],
+        "top_categories": [
+            {
+                "category": "Clothing",
+                "count": 258,
+                "percentage": 45.1
+            },
+            {
+                "category": "Accessories",
+                "count": 184,
+                "percentage": 32.17
+            },
+            {
+                "category": "Footwear",
+                "count": 87,
+                "percentage": 15.21
+            }
+        ],
+        "top_location": [
+            {
+                "location": "South Carolina",
+                "count": 18,
+                "percentage": 3.15
+            },
+            {
+                "location": "California",
+                "count": 17,
+                "percentage": 2.97
+            },
+            {
+                "location": "Montana",
+                "count": 17,
+                "percentage": 2.97
+            }
+        ],
+        "top_season": [
+            {
+                "season": "Fall",
+                "count": 157,
+                "percentage": 27.45
+            },
+            {
+                "season": "Summer",
+                "count": 143,
+                "percentage": 25.0
+            },
+            {
+                "season": "Spring",
+                "count": 137,
+                "percentage": 23.95
+            },
+            {
+                "season": "Winter",
+                "count": 135,
+                "percentage": 23.6
+            }
+        ],
+        "top_payment": [
+            {
+                "payment": "PayPal",
+                "count": 103,
+                "percentage": 18.01
+            },
+            {
+                "payment": "Venmo",
+                "count": 103,
+                "percentage": 18.01
+            },
+            {
+                "payment": "Debit Card",
+                "count": 101,
+                "percentage": 17.66
+            }
+        ],
+        "discount_usage_rate": 41.61,
+        "review_rating_score": 3.76
+    },
+    {
+        "cluster_id": 2,
+        "cluster_name": "월간 계획형 고객",
+        "num_customers": 553,
+        "avg_age": 44.28,
+        "avg_purchase_amount": 59.33,
+        "subscription_rate": 0.2694,
+        "dominant_frequency": "Monthly",
+        "marketing_suggestion": "월간 구독 서비스 추천 또는 월별 테마 기획전 안내. 월급날 맞이 특별 프로모션 고려.",
+        "top_items": [
+            {
+                "items": "Pants",
+                "count": 32,
+                "percentage": 5.79
+            },
+            {
+                "items": "Hat",
+                "count": 29,
+                "percentage": 5.24
+            },
+            {
+                "items": "Shirt",
+                "count": 28,
+                "percentage": 5.06
+            },
+            {
+                "items": "Jeans",
+                "count": 28,
+                "percentage": 5.06
+            },
+            {
+                "items": "Dress",
+                "count": 27,
+                "percentage": 4.88
+            }
+        ],
+        "top_categories": [
+            {
+                "category": "Clothing",
+                "count": 263,
+                "percentage": 47.56
+            },
+            {
+                "category": "Accessories",
+                "count": 171,
+                "percentage": 30.92
+            },
+            {
+                "category": "Footwear",
+                "count": 75,
+                "percentage": 13.56
+            }
+        ],
+        "top_location": [
+            {
+                "location": "Minnesota",
+                "count": 18,
+                "percentage": 3.25
+            },
+            {
+                "location": "California",
+                "count": 18,
+                "percentage": 3.25
+            },
+            {
+                "location": "New York",
+                "count": 17,
+                "percentage": 3.07
+            }
+        ],
+        "top_season": [
+            {
+                "season": "Spring",
+                "count": 144,
+                "percentage": 26.04
+            },
+            {
+                "season": "Winter",
+                "count": 139,
+                "percentage": 25.14
+            },
+            {
+                "season": "Fall",
+                "count": 137,
+                "percentage": 24.77
+            },
+            {
+                "season": "Summer",
+                "count": 133,
+                "percentage": 24.05
+            }
+        ],
+        "top_payment": [
+            {
+                "payment": "Credit Card",
+                "count": 107,
+                "percentage": 19.35
+            },
+            {
+                "payment": "Cash",
+                "count": 98,
+                "percentage": 17.72
+            },
+            {
+                "payment": "PayPal",
+                "count": 97,
+                "percentage": 17.54
+            }
+        ],
+        "discount_usage_rate": 42.86,
+        "review_rating_score": 3.78
+    },
+    {
+        "cluster_id": 3,
+        "cluster_name": "격주 알뜰형 고객",
+        "num_customers": 584,
+        "avg_age": 43.41,
+        "avg_purchase_amount": 60.08,
+        "subscription_rate": 0.2637,
+        "dominant_frequency": "Bi-Weekly",
+        "marketing_suggestion": "격주 쇼핑 패턴에 맞춰 특별 할인 쿠폰 또는 포인트 추가 적립 혜택 제공. 정기적인 관심 표현.",
+        "top_items": [
+            {
+                "items": "Handbag",
+                "count": 31,
+                "percentage": 5.31
+            },
+            {
+                "items": "Blouse",
+                "count": 31,
+                "percentage": 5.31
+            },
+            {
+                "items": "Jacket",
+                "count": 29,
+                "percentage": 4.97
+            },
+            {
+                "items": "Dress",
+                "count": 28,
+                "percentage": 4.79
+            },
+            {
+                "items": "Belt",
+                "count": 27,
+                "percentage": 4.62
+            }
+        ],
+        "top_categories": [
+            {
+                "category": "Clothing",
+                "count": 265,
+                "percentage": 45.38
+            },
+            {
+                "category": "Accessories",
+                "count": 180,
+                "percentage": 30.82
+            },
+            {
+                "category": "Footwear",
+                "count": 92,
+                "percentage": 15.75
+            }
+        ],
+        "top_location": [
+            {
+                "location": "Idaho",
+                "count": 19,
+                "percentage": 3.25
+            },
+            {
+                "location": "Alabama",
+                "count": 18,
+                "percentage": 3.08
+            },
+            {
+                "location": "Nebraska",
+                "count": 18,
+                "percentage": 3.08
+            }
+        ],
+        "top_season": [
+            {
+                "season": "Summer",
+                "count": 152,
+                "percentage": 26.03
+            },
+            {
+                "season": "Fall",
+                "count": 147,
+                "percentage": 25.17
+            },
+            {
+                "season": "Spring",
+                "count": 146,
+                "percentage": 25.0
+            },
+            {
+                "season": "Winter",
+                "count": 139,
+                "percentage": 23.8
+            }
+        ],
+        "top_payment": [
+            {
+                "payment": "Credit Card",
+                "count": 115,
+                "percentage": 19.69
+            },
+            {
+                "payment": "PayPal",
+                "count": 100,
+                "percentage": 17.12
+            },
+            {
+                "payment": "Venmo",
+                "count": 98,
+                "percentage": 16.78
+            }
+        ],
+        "discount_usage_rate": 44.18,
+        "review_rating_score": 3.77
+    },
+    {
+        "cluster_id": 4,
+        "cluster_name": "위클리 핵심 고객",
+        "num_customers": 539,
+        "avg_age": 44.65,
+        "avg_purchase_amount": 58.97,
+        "subscription_rate": 0.2913,
+        "dominant_frequency": "Weekly",
+        "marketing_suggestion": "매주 발행되는 주간 핫딜 정보 및 신상품 알림을 통해 지속적인 관심 유도. 빠른 배송 옵션 강조.",
+        "top_items": [
+            {
+                "items": "Sweater",
+                "count": 31,
+                "percentage": 5.75
+            },
+            {
+                "items": "Skirt",
+                "count": 27,
+                "percentage": 5.01
+            },
+            {
+                "items": "Pants",
+                "count": 26,
+                "percentage": 4.82
+            },
+            {
+                "items": "Shirt",
+                "count": 26,
+                "percentage": 4.82
+            },
+            {
+                "items": "Coat",
+                "count": 26,
+                "percentage": 4.82
+            }
+        ],
+        "top_categories": [
+            {
+                "category": "Clothing",
+                "count": 242,
+                "percentage": 44.9
+            },
+            {
+                "category": "Accessories",
+                "count": 166,
+                "percentage": 30.8
+            },
+            {
+                "category": "Footwear",
+                "count": 86,
+                "percentage": 15.96
+            }
+        ],
+        "top_location": [
+            {
+                "location": "Louisiana",
+                "count": 20,
+                "percentage": 3.71
+            },
+            {
+                "location": "Georgia",
+                "count": 18,
+                "percentage": 3.34
+            },
+            {
+                "location": "Oklahoma",
+                "count": 16,
+                "percentage": 2.97
+            }
+        ],
+        "top_season": [
+            {
+                "season": "Winter",
+                "count": 145,
+                "percentage": 26.9
+            },
+            {
+                "season": "Spring",
+                "count": 142,
+                "percentage": 26.35
+            },
+            {
+                "season": "Fall",
+                "count": 128,
+                "percentage": 23.75
+            },
+            {
+                "season": "Summer",
+                "count": 124,
+                "percentage": 23.01
+            }
+        ],
+        "top_payment": [
+            {
+                "payment": "Credit Card",
+                "count": 104,
+                "percentage": 19.29
+            },
+            {
+                "payment": "Cash",
+                "count": 101,
+                "percentage": 18.74
+            },
+            {
+                "payment": "PayPal",
+                "count": 94,
+                "percentage": 17.44
+            }
+        ],
+        "discount_usage_rate": 43.41,
+        "review_rating_score": 3.76
+    },
+    {
+        "cluster_id": 5,
+        "cluster_name": "시즈널 알뜰 구매 고객",
+        "num_customers": 563,
+        "avg_age": 44.69,
+        "avg_purchase_amount": 59.98,
+        "subscription_rate": 0.2487,
+        "dominant_frequency": "Quarterly",
+        "marketing_suggestion": "계절 변경 시점에 맞춘 시즌 상품 제안 및 할인 이벤트. 대량 구매 시 추가 혜택 제공.",
+        "top_items": [
+            {
+                "items": "Sunglasses",
+                "count": 36,
+                "percentage": 6.39
+            },
+            {
+                "items": "Boots",
+                "count": 31,
+                "percentage": 5.51
+            },
+            {
+                "items": "Hat",
+                "count": 29,
+                "percentage": 5.15
+            },
+            {
+                "items": "Pants",
+                "count": 28,
+                "percentage": 4.97
+            },
+            {
+                "items": "Coat",
+                "count": 27,
+                "percentage": 4.8
+            }
+        ],
+        "top_categories": [
+            {
+                "category": "Clothing",
+                "count": 239,
+                "percentage": 42.45
+            },
+            {
+                "category": "Accessories",
+                "count": 189,
+                "percentage": 33.57
+            },
+            {
+                "category": "Footwear",
+                "count": 83,
+                "percentage": 14.74
+            }
+        ],
+        "top_location": [
+            {
+                "location": "Missouri",
+                "count": 24,
+                "percentage": 4.26
+            },
+            {
+                "location": "Vermont",
+                "count": 18,
+                "percentage": 3.2
+            },
+            {
+                "location": "Delaware",
+                "count": 18,
+                "percentage": 3.2
+            }
+        ],
+        "top_season": [
+            {
+                "season": "Summer",
+                "count": 144,
+                "percentage": 25.58
+            },
+            {
+                "season": "Fall",
+                "count": 143,
+                "percentage": 25.4
+            },
+            {
+                "season": "Spring",
+                "count": 142,
+                "percentage": 25.22
+            },
+            {
+                "season": "Winter",
+                "count": 134,
+                "percentage": 23.8
+            }
+        ],
+        "top_payment": [
+            {
+                "payment": "Bank Transfer",
+                "count": 109,
+                "percentage": 19.36
+            },
+            {
+                "payment": "Cash",
+                "count": 104,
+                "percentage": 18.47
+            },
+            {
+                "payment": "PayPal",
+                "count": 103,
+                "percentage": 18.29
+            }
+        ],
+        "discount_usage_rate": 42.81,
+        "review_rating_score": 3.73
+    },
+    {
+        "cluster_id": 6,
+        "cluster_name": "분기별 쇼핑 고객",
+        "num_customers": 547,
+        "avg_age": 43.2,
+        "avg_purchase_amount": 60.69,
+        "subscription_rate": 0.2559,
+        "dominant_frequency": "Every 3 Months",
+        "marketing_suggestion": "분기별 트렌드 상품 소개 및 스타일링 팁 제공. 다음 구매 시점 예측하여 맞춤형 알림 발송.",
+        "top_items": [
+            {
+                "items": "Jewelry",
+                "count": 32,
+                "percentage": 5.85
+            },
+            {
+                "items": "Blouse",
+                "count": 31,
+                "percentage": 5.67
+            },
+            {
+                "items": "Sweater",
+                "count": 29,
+                "percentage": 5.3
+            },
+            {
+                "items": "Hoodie",
+                "count": 27,
+                "percentage": 4.94
+            },
+            {
+                "items": "Shorts",
+                "count": 27,
+                "percentage": 4.94
+            }
+        ],
+        "top_categories": [
+            {
+                "category": "Clothing",
+                "count": 247,
+                "percentage": 45.16
+            },
+            {
+                "category": "Accessories",
+                "count": 180,
+                "percentage": 32.91
+            },
+            {
+                "category": "Footwear",
+                "count": 80,
+                "percentage": 14.63
+            }
+        ],
+        "top_location": [
+            {
+                "location": "Illinois",
+                "count": 20,
+                "percentage": 3.66
+            },
+            {
+                "location": "Kentucky",
+                "count": 16,
+                "percentage": 2.93
+            },
+            {
+                "location": "New Jersey",
+                "count": 16,
+                "percentage": 2.93
+            }
+        ],
+        "top_season": [
+            {
+                "season": "Spring",
+                "count": 155,
+                "percentage": 28.34
+            },
+            {
+                "season": "Winter",
+                "count": 140,
+                "percentage": 25.59
+            },
+            {
+                "season": "Summer",
+                "count": 132,
+                "percentage": 24.13
+            },
+            {
+                "season": "Fall",
+                "count": 120,
+                "percentage": 21.94
+            }
+        ],
+        "top_payment": [
+            {
+                "payment": "Cash",
+                "count": 98,
+                "percentage": 17.92
+            },
+            {
+                "payment": "Debit Card",
+                "count": 97,
+                "percentage": 17.73
+            },
+            {
+                "payment": "Venmo",
+                "count": 97,
+                "percentage": 17.73
+            }
+        ],
+        "discount_usage_rate": 41.32,
+        "review_rating_score": 3.71
+    }
+]

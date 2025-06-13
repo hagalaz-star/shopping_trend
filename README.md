@@ -26,7 +26,7 @@
 대시보드에 사용된 고객 세분화 데이터는 `shopping_trends_updated.csv` 파일에 대한 분석을 통해 얻어졌습니다. 전체 분석 과정과 코드는 아래 Jupyter Notebook에서 확인하실 수 있습니다.
 
 ➡️ **[전체 분석 과정 및 코드 보기](./notebooks/Shopping_Trends.ipynb)**
-_(↑ `Shopping_Trends.ipynb` 파일은 프로젝트 내 `notebooks/` 폴더에 위치해야 합니다.)_
+
 
 ### 1. 분석 목표
 
@@ -36,7 +36,7 @@ _(↑ `Shopping_Trends.ipynb` 파일은 프로젝트 내 `notebooks/` 폴더에 
 ### 2. 데이터 출처 및 설명
 
 - **사용한 데이터셋:** `shopping_trends_updated.csv` 파일
-  - _(선택 사항: 만약 Kaggle 등 외부 출처라면 여기에 명시하고 링크를 추가할 수 있습니다.)_
+  - _(https://www.kaggle.com/datasets/bhadramohit/customer-shopping-latest-trends-dataset)_
 - **주요 포함 정보:** (총 18개 컬럼)
   - Customer ID, Age, Gender, Item Purchased, Category
   - Purchase Amount (USD), Location, Size, Color, Season

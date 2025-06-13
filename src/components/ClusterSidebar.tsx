@@ -14,7 +14,7 @@ export default function ClusterSidebar({
 }: ClusterSidebarProps) {
   return (
     <>
-      <div className="w-64 bg-white flex-col h-[1200px] p-4 space-y-2 ">
+      <div className="w-64 bg-blue-950 flex-col h-[1200px] p-4 space-y-2 ">
         {groups.map((group) => {
           return (
             <div

@@ -17,7 +17,7 @@ export default function Home() {
 
   useEffect(() => {
     axios
-      .get("/data/customer_segments.json")
+      .get("/data/customer_segments_final.json")
       .then((response) => {
         console.log("Fetched data structure:", response.data);
         setClusters(response.data);
