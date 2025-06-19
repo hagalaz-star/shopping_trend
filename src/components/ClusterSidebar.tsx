@@ -1,6 +1,14 @@
 import React from "react";
 import { MyDataType } from "../types/types";
-import { group } from "console";
+import { Button } from "@/components/ui/button";
+import {
+  HeartMinus,
+  WalletCards,
+  UserCheck,
+  DiamondPercent,
+  Star,
+  MousePointerClick,
+} from "lucide-react";
 
 interface ClusterSidebarProps {
   groups: MyDataType[];
@@ -22,43 +30,86 @@ export default function ClusterSidebar({
   };
   return (
     <>
-      <div className="w-64 bg-blue-950 flex-col h-[1200px] p-4 space-y-9 ">
-        <h2 className="text-white font-bold mb-4">Basic information</h2>
+      <div className="w-80 bg-blue-950 flex-col h-[1200px] p-4 space-y-9 ">
+        <h2 className="text-white font-bold mb-4 text-3xl m-4">
+          Basic information
+        </h2>
 
         {sideCluster ? (
-          <div className=" bg-white p-4 round-lg shadow space-y-3">
-            <div className="flex justify-between items-center">
-              <span className="text-lg font-medium text-gray-600">
-                평균나이
-              </span>
-              <span className="text-lg font-bold text-gray-900">
-                {sideCluster.avg_age} 세
+          <div className=" round-lg shadow space-y-3 my-15">
+            <div className="flex flex-col justify-between items-center my-8">
+              <div className="flex space-x-2">
+                <HeartMinus className="h-5 w-5 sm:h-6 sm:w-6 text-white" />
+                <span className="text-lg font-medium text-white">평균나이</span>
+              </div>
+
+              <span className="text-lg font-bold text-white">
+                {sideCluster.avg_age}세
               </span>
             </div>
 
-            <div className="flex justify-between items-center">
-              <span className="text-lg font-medium text-gray-600">
-                평균구매액
-              </span>
-              <span className="text-lg font-bold text-gray-900">
-                $ {sideCluster.avg_purchase_amount}
+            <div className="flex flex-col justify-between items-center my-8">
+              <div className="flex space-x-2">
+                <WalletCards className="h-5 w-5 sm:h-6 sm:w-6 text-white" />
+                <span className="text-lg font-medium text-white">
+                  평균구매액
+                </span>
+              </div>
+
+              <span className="text-lg font-bold text-white">
+                ${sideCluster.avg_purchase_amount}
               </span>
             </div>
 
-            <div className="flex justify-between items-center">
-              <span className="text-lg font-medium text-gray-600">구독률</span>
-              <span className="text-lg font-bold text-gray-900">
+            <div className="flex flex-col justify-between items-center my-8">
+              <div className="flex space-x-2">
+                <UserCheck className="h-5 w-5 sm:h-6 sm:w-6 text-white" />
+                <span className="text-lg font-medium text-white">구독률</span>
+              </div>
+
+              <span className="text-lg font-bold text-white">
                 {formatPercentManual(sideCluster.subscription_rate)}
+              </span>
+            </div>
+
+            <div className="flex flex-col justify-between items-center my-8">
+              <div className="flex space-x-2">
+                <DiamondPercent className="h-5 w-5 sm:h-6 sm:w-6 text-white" />
+                <span className="text-lg font-medium text-white">
+                  할인이용률
+                </span>
+              </div>
+
+              <span className="text-lg font-bold text-white">
+                {`${sideCluster.discount_usage_rate} %`}
+              </span>
+            </div>
+
+            <div className="flex flex-col justify-between items-center my-8">
+              <div className="flex space-x-2">
+                <Star className="h-5 w-5 sm:h-6 sm:w-6 text-white" />
+                <span className="text-lg font-medium text-white">
+                  리뷰 평점
+                </span>
+              </div>
+
+              <span className="text-lg font-bold text-white">
+                {`${sideCluster.review_rating_score} / 5`}
               </span>
             </div>
           </div>
         ) : (
-          <div className="p-4 rounded-lg cursor-pointer mb-2">
-            클러스터를 선택해 주세여
+          <div className="p-4 rounded-lg cursor-pointer mb-2 ">
+            <div className="flex text-center py-10 text-white space-x-2">
+              <MousePointerClick />
+              <span>클러스터를 선택해 주세요 !!!</span>
+            </div>
           </div>
         )}
-        <div className="text-white flex justify-center items-center bg-blue-400">
-          <button> Ai </button>
+        <div className="flex justify-center items-center w-full">
+          <Button className=" bg-blue-400 px-13 py-6 text-white font-bold text-2xl">
+            Ai
+          </Button>
         </div>
       </div>
     </>

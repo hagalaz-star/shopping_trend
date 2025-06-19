@@ -13,7 +13,7 @@ export default function DashboardLayout({
 }: DashboardLayoutProps) {
   return (
     <div className="min-h-screen bg-amber-100 p-5 sm:p-8">
-      <div className="mx-auto max-w-7xl bg-white shadow-xl">
+      <div className="mx-auto max-w-[1600px] bg-white shadow-xl">
         <div>{selectOptions}</div>
 
         <div className="flex">

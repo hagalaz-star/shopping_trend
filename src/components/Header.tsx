@@ -14,7 +14,7 @@ export default function Header({
   console.log("Header received groups:", groups);
 
   return (
-    <header className="border-b border-white bg-blue-950">
+    <header className="bg-blue-950">
       <div className="mx-auto flex max-w-7xl items-center justify-between  px-10 py-10">
         <h1 className="bg-blue-950 font-bold text-2xl text-white">
           AI Persona
