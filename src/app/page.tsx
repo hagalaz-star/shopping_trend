@@ -1,5 +1,6 @@
 "use client";
 
+import Header from "@/components/Header";
 import DashboardLayout from "@/components/layout/DashboardLayout";
 import ClusterSidebar from "@/components/ClusterSidebar";
 import SegmentDetailsView from "@/components/SegmentDetailsView";
@@ -54,6 +55,13 @@ export default function Home() {
   return (
     <div>
       <DashboardLayout
+        selectOptions={
+          <Header
+            groups={clusters}
+            selectedClusterId={selectedClusterId}
+            onClusterSelect={handleClusterSelect}
+          />
+        }
         sidebar={
           <ClusterSidebar
             groups={clusters}
