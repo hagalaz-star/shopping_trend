@@ -89,49 +89,43 @@ export default function AiSuggestionBox({ clusterData }: AiSuggestionProps) {
 
   return (
     <>
-      <div className="mt-8 bg-white p-6 rounded-xl shadow-lg">
-        <div className="text-center">
-          <h3 className="text-xl  font-semibold  text-gray-700 mb-4 -mt-12">
-            AI 기반 추가 마케팅 제안
-          </h3>
-
-          <button
-            onClick={handleSuggestion}
-            disabled={isLoading || !clusterData}
-            className="bg-gradient-to-r mt-4 from-purple-500 to-indigo-600 hover:from-purple-600 hover:to-indigo-700 text-white font-semibold py-2 px-6 rounded-lg shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-150 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed"
-          >
-            {isLoading
-              ? "ai 분석중..."
-              : clusterData
-              ? `${clusterData?.cluster_name} AI 제안 받기`
-              : "클러스터 선택필요"}
-          </button>
-        </div>
-
-        {isLoading && (
-          <div className="mt-6 text-center">
-            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-purple-700 mx-auto"></div>
-            <p className="text-purple-600 mt-2">
-              AI가 열심히 제안을 만들고 있습니다...
-            </p>
-          </div>
-        )}
-
-        {error && (
-          <p className="mt-6 text-center text-red-500 p-4 bg-red-50 rounded-md">
-            오류: {error}
-          </p>
-        )}
-
-        {aiSuggestion && !isLoading && (
-          <div className="mt-6 p-4 bg-indigo-50 rounded-lg border border-indigo-200">
-            <h4 className="font-semibold text-indigo-800 mb-2">AI 추천:</h4>
-            <div className="text-gray-700 whitespace-pre-wrap leading-relaxed">
-              {renderSuggestion(aiSuggestion)}
-            </div>
-          </div>
-        )}
+      <div className="text-center">
+        <button
+          onClick={handleSuggestion}
+          disabled={isLoading || !clusterData}
+          className="bg-gradient-to-r mt-4 from-purple-500 to-indigo-600 hover:from-purple-600 hover:to-indigo-700 text-white font-semibold py-2 px-6 rounded-lg shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-150 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed"
+        >
+          {isLoading
+            ? "ai 분석중..."
+            : clusterData
+            ? `${clusterData?.cluster_name} AI 제안 받기`
+            : "클러스터 선택필요"}
+        </button>
       </div>
+
+      {isLoading && (
+        <div className="mt-6 text-center">
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-purple-700 mx-auto"></div>
+          <p className="text-purple-600 mt-2">
+            AI가 열심히 제안을 만들고 있습니다...
+          </p>
+        </div>
+      )}
+
+      {error && (
+        <p className="mt-6 text-center text-red-500 p-4 bg-red-50 rounded-md">
+          오류: {error}
+        </p>
+      )}
+
+      {aiSuggestion && !isLoading && (
+        <div className="mt-6 p-4 bg-indigo-50 rounded-lg border border-indigo-200">
+          <h4 className="font-semibold text-indigo-800 mb-2">AI 추천:</h4>
+          <div className="text-gray-700 whitespace-pre-wrap leading-relaxed">
+            {renderSuggestion(aiSuggestion)}
+          </div>
+        </div>
+      )}
     </>
   );
 }

@@ -97,6 +97,12 @@ export default function ClusterSidebar({
                 {`${sideCluster.review_rating_score} / 5`}
               </span>
             </div>
+
+            <div className="flex justify-center items-center w-full">
+              <Button className=" bg-blue-400 px-13 py-6 text-white font-bold text-2xl">
+                Ai
+              </Button>
+            </div>
           </div>
         ) : (
           <div className="p-4 rounded-lg cursor-pointer mb-2 ">
@@ -106,11 +112,6 @@ export default function ClusterSidebar({
             </div>
           </div>
         )}
-        <div className="flex justify-center items-center w-full">
-          <Button className=" bg-blue-400 px-13 py-6 text-white font-bold text-2xl">
-            Ai
-          </Button>
-        </div>
       </div>
     </>
   );

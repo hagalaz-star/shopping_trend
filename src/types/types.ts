@@ -33,11 +33,23 @@ export interface MyDataType {
   marketing_suggestion: string;
 
   top_items: TopItems[];
-  top_category: TopCategory[];
+  top_categories: TopCategory[];
   top_location: TopLocation[];
   top_season: TopSeason[];
   top_payment: TopPayment[];
 
   discount_usage_rate: number;
   review_rating_score: number;
+}
+
+export interface OverallDataSummary {
+  total_unique_items: number;
+  total_unique_payment: number;
+  total_unique_locations: number;
+  total_unique_categories: number;
+}
+
+export interface CustomerData {
+  cluster_segments: MyDataType[];
+  overall_data_summary: OverallDataSummary;
 }
