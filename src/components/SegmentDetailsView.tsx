@@ -17,7 +17,7 @@ import AiSuggestionBox from "./AiSuggestionBox";
 import { Ban } from "lucide-react";
 import TopPaymentCard from "./TopPaymentCard";
 import { Separator } from "@/components/ui/separator";
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
 
 // Chart.js에 필요한 요소들을 등록합니다.
 ChartJS.register(
@@ -272,7 +272,7 @@ export default function SegmentDetailsView({
   console.log("실제로 렌더링에 사용되는 topPayments 데이터:", topPayments);
 
   return (
-    <div className="flex flex-col gap-8">
+    <div className="flex flex-col gap-12">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div className="relative h-[400px] w-full">
           <Bar data={barData} options={barOptions} />
@@ -292,6 +292,10 @@ export default function SegmentDetailsView({
       </div>
 
       <div className="mt-16">
+        <h3 className="text-xl font-bold mb-4 text-center">
+          Top Payment Methods
+        </h3>
+
         <div className="flex justify-evenly">
           {topPayments.map((payment) => (
             <div className="w-60" key={payment.payment}>
@@ -306,17 +310,24 @@ export default function SegmentDetailsView({
       </div>
 
       <div>
-        <Alert className="p-6">
-          <div className="text-center">
-            <AlertTitle className="text-2xl font-bold text-gray-800 mb-6">
-              AI 기반 추가 마케팅 제안
-            </AlertTitle>
-            <AlertDescription>
-              <AiSuggestionBox clusterData={selectedCluster} />
-            </AlertDescription>
-          </div>
+        <Separator className="my-8" />
+        <Alert className="text-center  p-6">
+          <AlertTitle className="text-2xl font-bold text-gray-800 mb-6">
+            AI 기반 마케팅 제안
+          </AlertTitle>
+          <AlertDescription className="flex justify-center mt-4 py-5 px-4">
+            <AiSuggestionBox clusterData={selectedCluster} />
+          </AlertDescription>
         </Alert>
       </div>
+
+      {/* <div>
+        <Separator className="my-8" />
+        <h3 className="text-2xl font-bold text-gray-800 mb-6 text-center">
+          AI 기반 추가 마케팅 제안
+        </h3>
+        <AiSuggestionBox clusterData={selectedCluster} />
+      </div> */}
     </div>
   );
 }

@@ -93,7 +93,7 @@ export default function AiSuggestionBox({ clusterData }: AiSuggestionProps) {
         <button
           onClick={handleSuggestion}
           disabled={isLoading || !clusterData}
-          className="bg-gradient-to-r mt-4 from-purple-500 to-indigo-600 hover:from-purple-600 hover:to-indigo-700 text-white font-semibold py-2 px-6 rounded-lg shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-150 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed"
+          className="bg-gradient-to-r mt-4 from-purple-500 to-indigo-600 hover:from-purple-600 hover:to-indigo-700 text-white font-semibold py-5 px-6 rounded-lg shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-150 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed"
         >
           {isLoading
             ? "ai 분석중..."
