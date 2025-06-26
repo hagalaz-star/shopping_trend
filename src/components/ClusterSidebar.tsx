@@ -10,16 +10,16 @@ import {
   MousePointerClick,
 } from "lucide-react";
 
+import AiResultDialog from "./AiResultDialog";
+
 interface ClusterSidebarProps {
   groups: MyDataType[];
   selectedClusterId: number | null;
-  onClusterSelect: (clusterId: number) => void;
 }
 
 export default function ClusterSidebar({
   groups,
   selectedClusterId,
-  onClusterSelect,
 }: ClusterSidebarProps) {
   const sideCluster = groups.find(
     (group) => selectedClusterId === group.cluster_id
@@ -93,7 +93,8 @@ export default function ClusterSidebar({
 
           <div className="flex justify-center items-center w-full">
             <Button className=" bg-blue-400 px-13 py-6 text-white font-bold text-2xl">
-              Ai
+              <AiResultDialog clusterData={sideCluster} />
+              AI
             </Button>
           </div>
         </div>

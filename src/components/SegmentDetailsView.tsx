@@ -311,23 +311,15 @@ export default function SegmentDetailsView({
 
       <div>
         <Separator className="my-8" />
-        <Alert className="text-center  p-6">
+        <Alert className="text-center p-6">
           <AlertTitle className="text-2xl font-bold text-gray-800 mb-6">
             AI 기반 마케팅 제안
           </AlertTitle>
-          <AlertDescription className="flex justify-center mt-4 py-5 px-4">
+          <AlertDescription className="flex justify-center mt-4">
             <AiSuggestionBox clusterData={selectedCluster} />
           </AlertDescription>
         </Alert>
       </div>
-
-      {/* <div>
-        <Separator className="my-8" />
-        <h3 className="text-2xl font-bold text-gray-800 mb-6 text-center">
-          AI 기반 추가 마케팅 제안
-        </h3>
-        <AiSuggestionBox clusterData={selectedCluster} />
-      </div> */}
     </div>
   );
 }

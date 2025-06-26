@@ -71,7 +71,6 @@ export default function Home() {
           <ClusterSidebar
             groups={customerData.cluster_segments}
             selectedClusterId={selectedClusterId}
-            onClusterSelect={handleClusterSelect}
           />
         }
         mainContent={
