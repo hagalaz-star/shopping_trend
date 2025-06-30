@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { GoogleGenAI } from "@google/genai";
+import { GoogleGenAI, Modality } from "@google/genai";
 
 interface PromtRequest {
   prompt: string;
@@ -30,38 +30,15 @@ export async function POST(request: Request) {
 
     const genAi = new GoogleGenAI({ apiKey: apiKey });
 
-    // --- 2. 이미지 생성을 위한 API 호출 ---
+    // --- 1. 이미지 생성을 위한 API 호출 ---
     const imagePrompt = `Generate a single, friendly, cartoon-style illustration of a person based on this context: "${originalKoreanPrompt}"`;
-
     const imageResult = await genAi.models.generateContent({
       model: "gemini-2.0-flash-preview-image-generation",
       contents: [{ role: "user", parts: [{ text: imagePrompt }] }],
-      // config: {
-      //   responseModalities: [Modality.TEXT, Modality.IMAGE],
-      // },
+      config: {
+        responseModalities: [Modality.IMAGE, Modality.TEXT],
+      },
     });
-
-    // if (
-    //   !generationResult.candidates ||
-    //   generationResult.candidates.length === 0
-    // ) {
-    //   throw new Error("AI로부터 유효한 응답 후보를 받지 못했습니다.");
-    // }
-    // const firstCnadiate = generationResult.candidates[0];
-
-    // if (firstCnadiate.content && firstCnadiate.content.parts) {
-    //   for (const part of firstCnadiate.content.parts) {
-    //     if (part.text) {
-    //       description = part.text;
-    //     } else if (part.inlineData) {
-    //       const base64Image = part.inlineData.data;
-    //       const mimeType = part.inlineData.mimeType;
-    //       imageUrl = `data:${mimeType};base64,${base64Image}`;
-    //     }
-    //   }
-    // } else {
-    //   throw new Error("AI 응답 내용에 처리할수 있는 데이터가 없습니다");
-    // }
 
     let imageUrl = "";
 
@@ -75,6 +52,7 @@ export async function POST(request: Request) {
         imageUrl = `data:${mimeType};base64,${base64Image}`;
       }
     }
+
     if (!imageUrl) {
       console.log(
         "Image Generation Failed. AI Response:",
@@ -85,24 +63,33 @@ export async function POST(request: Request) {
       );
     }
 
-    const descriptionPrompt = `다음은 어떤 고객 그룹에 대한 정보입니다. 이 정보를 바탕으로, 이 고객의 특징과 라이프스타일을 1~2 문장의 짧고 자연스러운 한글로 설명해주세요: "${originalKoreanPrompt}"`;
+    // --- 2. 한글 설명을 위한 API 호출 ---
+    const descriptionPrompt = `다음 고객 정보를 바탕으로, 이 고객 그룹을 대표하는 가상의 페르소나를 구체적으로 만들어줘.
+아래 항목들을 반드시 포함하고, 각 항목의 제목(###)은 그대로 유지해줘. 마크다운은 사용하지 말고 일반 텍스트로만 응답해줘.
+
+1. 이름 및 직업
+(여기에 가상의 이름과 직업을 1문장으로 작성)
+
+2. 페르소나 요약
+(이 사람의 라이프스타일과 성격을 2~3문장으로 묘사)
+
+3. 핵심 니즈 및 불편함
+(쇼핑과 관련하여 이 사람이 느끼는 가장 큰 니즈와 불편함(Pain Point)을 1~2가지 서술)
+
+4. 대표 인용구
+(이 사람이 할 법한 대표적인 말을 큰따옴표 안에 1문장 작성)
+
+---
+고객 정보: "${originalKoreanPrompt}".
+
+고객 정보: "${originalKoreanPrompt}""`;
     const descriptionResult = await genAi.models.generateContent({
-      model: "gemini-2.0-flash-preview-image-generation",
+      model: "gemini-1.5-flash-latest",
       contents: [{ role: "user", parts: [{ text: descriptionPrompt }] }],
     });
 
-    let description = "";
-    if (
-      descriptionResult.candidates &&
-      descriptionResult.candidates[0]?.content?.parts
-    ) {
-      const textPart = descriptionResult.candidates[0].content.parts.find(
-        (part) => part.text
-      );
-      if (textPart && textPart.text) {
-        description = textPart.text;
-      }
-    }
+    const description = descriptionResult.text ?? "";
+
     if (!description) {
       throw new Error("AI가 설명을 생성하지 못했습니다.");
     }
