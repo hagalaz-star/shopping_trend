@@ -1,6 +1,5 @@
 import React from "react";
 import { MyDataType } from "../types/types";
-import { Button } from "@/components/ui/button";
 import {
   HeartMinus,
   WalletCards,
@@ -92,10 +91,7 @@ export default function ClusterSidebar({
           </div>
 
           <div className="flex justify-center items-center w-full">
-            <Button className=" bg-blue-400 px-13 py-6 text-white font-bold text-2xl">
-              <AiResultDialog clusterData={sideCluster} />
-              AI
-            </Button>
+            <AiResultDialog clusterData={sideCluster} />
           </div>
         </div>
       ) : (
