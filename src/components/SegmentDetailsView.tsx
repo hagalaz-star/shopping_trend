@@ -9,9 +9,10 @@ import {
   TooltipItem,
   Tooltip,
   Legend,
+  scales,
 } from "chart.js";
 import "chart.js/auto";
-import { Bar, Doughnut, Pie } from "react-chartjs-2";
+import { Bar, Doughnut, PolarArea, Chart } from "react-chartjs-2";
 // import { Pie } from "react-chartjs-2";
 import AiSuggestionBox from "./AiSuggestionBox";
 import { Ban } from "lucide-react";
@@ -62,67 +63,93 @@ export default function SegmentDetailsView({
   const itemLables = topItems.map((item) => item.items);
 
   // top_items 배열에서 'count' 숫자만 추출하여 새로운 배열 생성
-  const itemCounts = topItems.map((item) => item.count);
+  // const itemCounts = topItems.map((item) => item.count);
+
+  // 막대그래프 데이터 (선택된 클러스터의 구매율)
+  const BarData = topItems.map((item) => item.cluster_percentage);
+
+  const lineDataChart = itemLables.map((label) => {
+    const overall_data = summary?.overall_items_purchase_rate.find(
+      (stat) => stat.item === label
+    );
+    return overall_data ? overall_data.overall_percentage : 0;
+  });
+
+  // 3. Chart.js에 전달할 최종 데이터 객체
 
   // 바 그래프 데이터 객체 만들기
-  const barData = {
+  const mixedChart = {
     labels: itemLables,
     datasets: [
       {
-        label: "구매 수량",
-        data: itemCounts,
-        backgroundColor: "rgba(54, 162, 235, 0.6)",
+        type: "bar" as const,
+        label: "top 6 아이템 판매량",
+        data: BarData,
+        backgroundColor: "rgba(54, 162, 235, 0.7)",
         borderColor: "rgba(54, 162, 235, 1)",
+        yAxisID: "y",
+        order: 2,
         borderWidth: 1,
         barThickness: 50,
       },
+      {
+        type: "line" as const,
+        label: "전체 아이템 판매량",
+        data: lineDataChart,
+        borderColor: "rgba(255, 99, 132, 1)",
+        backgroundColor: "rgba(255, 99, 132, 0.2)",
+        yAxisID: "y",
+        order: 1,
+      },
     ],
   };
-  const barOptions = {
-    indexAxis: "x" as const,
-    responsive: true,
-    elements: {
-      bar: {
-        borderWidth: 3,
-      },
-    },
+
+  const mixedChartOption = {
+    responsive: true, //
     plugins: {
-      legend: {
-        display: false,
+      legnd: {
+        display: true,
       },
       title: {
         display: true,
-        text: `총 ${summary?.total_unique_items} 가지 아이템중  Top 5 구매 수량`,
+        text: `총 ${summary?.total_unique_items} 가지 아이템중  Top 6 구매 수량`,
         font: {
           size: 18,
         },
       },
       tooltip: {
+        mode: "index" as const,
+        intersect: false,
         callbacks: {
-          label: function (context: TooltipItem<"bar">) {
-            const index = context.dataIndex;
+          label: function (context: TooltipItem<"bar" | "line">) {
+            let label = context.dataset.label || "";
 
-            const currentItem = topItems[index];
-            const percentage = currentItem.percentage.toFixed(2);
-            const label = context.dataset.label || "";
-
-            const value = context.formattedValue;
-
-            return `${label}: ${value}개 (${percentage}%)`;
+            if (label) {
+              label += ": ";
+            }
+            if (context.parsed.y !== null) {
+              label = `${context.parsed.y.toFixed(2)}%`;
+            }
+            return label;
           },
         },
       },
     },
-
-    layout: {
-      padding: {
-        left: 20,
+    scales: {
+      y: {
+        beginAtZero: true,
+        title: {
+          display: true,
+          text: "구매율 (%)",
+        },
       },
     },
   };
 
   const topCategories = selectedCluster.top_categories;
-  const categoryPercentage = topCategories.map((item) => item.percentage);
+  const categoryPercentage = topCategories.map(
+    (item) => item.cluster_percentage
+  );
   const categoryLables = topCategories.map((item) => item.category);
 
   const categoryData = {
@@ -169,7 +196,7 @@ export default function SegmentDetailsView({
 
   const topLocation = selectedCluster.top_location;
   const locationLabel = topLocation.map((item) => item.location);
-  const locationPercentage = topLocation.map((item) => item.percentage);
+  const locationPercentage = topLocation.map((item) => item.cluster_percentage);
 
   const barLocation = {
     labels: locationLabel,
@@ -202,7 +229,7 @@ export default function SegmentDetailsView({
       },
       title: {
         display: true,
-        text: `상위 판매 지역 Top 3 (전체 ${summary?.total_unique_locations}개 지역)`,
+        text: `주요 고객 분포 지역 (전체 ${summary?.total_unique_locations}개 주)`,
         font: {
           size: 18,
         },
@@ -218,11 +245,28 @@ export default function SegmentDetailsView({
         },
       },
     },
+    scales: {
+      y: {
+        beginAtZero: true,
+        title: {
+          display: true,
+          text: "구매지역(%)",
+        },
+        ticks: {
+          callback: function (value: string | number) {
+            if (Number.isInteger(value)) {
+              return value;
+            }
+            return "";
+          },
+        },
+      },
+    },
   };
 
   const topSeason = selectedCluster.top_season;
   const seasonLabel = topSeason.map((item) => item.season);
-  const seasonPercentage = topSeason.map((item) => item.percentage);
+  const seasonPercentage = topSeason.map((item) => item.cluster_percentage);
 
   const seasonPie = {
     labels: seasonLabel,
@@ -257,12 +301,20 @@ export default function SegmentDetailsView({
 
       tooltip: {
         callbacks: {
-          label: function (context: TooltipItem<"pie">) {
+          label: function (context: TooltipItem<"polarArea">) {
             const datasetLabel = context.dataset.label || "";
-            const value = context.parsed;
+            const value = context.raw as number;
 
             return ` ${datasetLabel} ${value.toFixed(2)} %`;
           },
+        },
+      },
+    },
+    scales: {
+      r: {
+        // 'r'은 방사형(radial) 축을 의미합니다.
+        ticks: {
+          display: false, // 눈금 텍스트를 숨깁니다.
         },
       },
     },
@@ -275,7 +327,7 @@ export default function SegmentDetailsView({
     <div className="flex flex-col gap-12">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div className="relative h-[400px] w-full">
-          <Bar data={barData} options={barOptions} />
+          <Chart type="bar" data={mixedChart} options={mixedChartOption} />
         </div>
 
         <div className="relative h-[400px] w-full">
@@ -287,7 +339,7 @@ export default function SegmentDetailsView({
         </div>
 
         <div className="relative h-[400px] w-full">
-          <Pie data={seasonPie} options={seasonOptions} />
+          <PolarArea data={seasonPie} options={seasonOptions} />
         </div>
       </div>
 
@@ -301,8 +353,8 @@ export default function SegmentDetailsView({
             <div className="w-60" key={payment.payment}>
               <TopPaymentCard
                 title={payment.payment}
-                count={payment.count}
-                percentage={payment.percentage}
+                count={payment.cluster_count}
+                percentage={payment.cluster_percentage}
               />
             </div>
           ))}

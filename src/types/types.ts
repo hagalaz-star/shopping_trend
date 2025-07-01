@@ -1,6 +1,7 @@
 interface ItemCount {
-  count: number;
-  percentage: number;
+  cluster_count: number;
+  cluster_percentage: number;
+  overall_percentage: number;
 }
 
 interface TopItems extends ItemCount {
@@ -42,11 +43,18 @@ export interface MyDataType {
   review_rating_score: number;
 }
 
+interface OverallItemStat {
+  item: string;
+  overall_count: number;
+  overall_percentage: number;
+}
+
 export interface OverallDataSummary {
   total_unique_items: number;
   total_unique_payment: number;
   total_unique_locations: number;
   total_unique_categories: number;
+  overall_items_purchase_rate: OverallItemStat[];
 }
 
 export interface CustomerData {
