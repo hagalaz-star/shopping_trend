@@ -9,7 +9,6 @@ import {
   TooltipItem,
   Tooltip,
   Legend,
-  scales,
 } from "chart.js";
 import "chart.js/auto";
 import { Bar, Doughnut, PolarArea, Chart } from "react-chartjs-2";
