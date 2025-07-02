@@ -1,14 +1,16 @@
 "use client";
 
+import Header from "@/components/Header";
 import DashboardLayout from "@/components/layout/DashboardLayout";
 import ClusterSidebar from "@/components/ClusterSidebar";
 import SegmentDetailsView from "@/components/SegmentDetailsView";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { MyDataType } from "@/types/types";
+import { CustomerData } from "@/types/types";
 
 export default function Home() {
-  const [clusters, setClusters] = useState<MyDataType[]>([]);
+  const [customerData, setCustomerData] = useState<CustomerData | null>(null);
+
   const [selectedClusterId, setSelectedClusterId] = useState<number | null>(
     null
   );
@@ -17,17 +19,17 @@ export default function Home() {
 
   useEffect(() => {
     axios
-      .get("/data/customer_segments.json")
+      .get("/data/customer_segments_final_updated.json")
       .then((response) => {
         console.log("Fetched data structure:", response.data);
-        setClusters(response.data);
+        setCustomerData(response.data);
 
         setError(null);
       })
       .catch((err) => {
         console.error("Error fetching data:", err);
         setError(err.message || "데이터를 불러오는 중 에러가 발생했습니다.");
-        setClusters([]);
+        setCustomerData(null);
       })
       .finally(() => {
         setIsLoading(false);
@@ -47,6 +49,10 @@ export default function Home() {
     return <p>에러: {error} </p>;
   }
 
+  if (!customerData) {
+    return <p>데이터가 없습니다.</p>;
+  }
+
   console.log(
     "Home component rendering with selectedClusterId:",
     selectedClusterId
@@ -54,17 +60,24 @@ export default function Home() {
   return (
     <div>
       <DashboardLayout
-        sidebar={
-          <ClusterSidebar
-            groups={clusters}
+        selectOptions={
+          <Header
+            groups={customerData.cluster_segments}
             selectedClusterId={selectedClusterId}
             onClusterSelect={handleClusterSelect}
+          />
+        }
+        sidebar={
+          <ClusterSidebar
+            groups={customerData.cluster_segments}
+            selectedClusterId={selectedClusterId}
           />
         }
         mainContent={
           <SegmentDetailsView
             selectedClusterId={selectedClusterId}
-            clusters={clusters}
+            clusters={customerData.cluster_segments}
+            summary={customerData.overall_data_summary}
           />
         }
       />

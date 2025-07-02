@@ -1,247 +1,376 @@
-import { MyDataType } from "@/types/types";
-import { Bar } from "react-chartjs-2";
+import { MyDataType, OverallDataSummary } from "@/types/types";
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  DoughnutController,
+  ArcElement,
+  BarElement,
+  TooltipItem,
+  Tooltip,
+  Legend,
+} from "chart.js";
 import "chart.js/auto";
-import { FaUsers } from "react-icons/fa6";
-import { FaHandHoldingHeart } from "react-icons/fa";
-import { FaShoppingCart } from "react-icons/fa";
-import { Pie } from "react-chartjs-2";
-import type { TooltipItem } from "chart.js";
+import { Bar, Doughnut, PolarArea, Chart } from "react-chartjs-2";
+// import { Pie } from "react-chartjs-2";
 import AiSuggestionBox from "./AiSuggestionBox";
+import { Ban } from "lucide-react";
+import TopPaymentCard from "./TopPaymentCard";
+import { Separator } from "@/components/ui/separator";
+import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
+
+// Chart.js에 필요한 요소들을 등록합니다.
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  DoughnutController,
+  ArcElement,
+  Tooltip,
+  Legend
+);
 
 interface SegmentDetailsViewProps {
   selectedClusterId: number | null;
   clusters: MyDataType[];
+  summary: OverallDataSummary | null;
 }
 
 export default function SegmentDetailsView({
   selectedClusterId,
   clusters,
+  summary,
 }: SegmentDetailsViewProps) {
   const selectedCluster = clusters.find(
     (cluster) => cluster.cluster_id === selectedClusterId
   );
 
   if (!selectedCluster) {
-    // "선택된 클러스터 없음" 메시지에 Tailwind CSS 적용
+    // "선택된 클러스터 없음"
     return (
-      <div className="p-4 text-center text-gray-500">
-        <p>선택한 클러스터가 없습니다</p>
+      <div className="p-4 text-center text-gray-500 text-2xl">
+        <div className="flex justify-center items-center space-x-2">
+          <Ban />
+          <span>선택한 클러스터가 없습니다</span>
+        </div>
       </div>
     );
   }
+  const topItems = selectedCluster.top_items;
 
-  let overall_Avg_purchase_amount = 0;
-  if (clusters && clusters.length > 0) {
-    const total_Avg_purchase_amount = clusters.reduce(
-      (sum, cluster) => sum + cluster.avg_purchase_amount,
-      0
+  // top_items 배열에서 'items' 이름만 추출하여 새로운 배열 생성
+  const itemLables = topItems.map((item) => item.items);
+
+  // top_items 배열에서 'count' 숫자만 추출하여 새로운 배열 생성
+  // const itemCounts = topItems.map((item) => item.count);
+
+  // 막대그래프 데이터 (선택된 클러스터의 구매율)
+  const BarData = topItems.map((item) => item.cluster_percentage);
+
+  const lineDataChart = itemLables.map((label) => {
+    const overall_data = summary?.overall_items_purchase_rate.find(
+      (stat) => stat.item === label
     );
-    overall_Avg_purchase_amount = Number(
-      (total_Avg_purchase_amount / clusters.length).toFixed(2)
-    );
-  }
+    return overall_data ? overall_data.overall_percentage : 0;
+  });
+
+  // 3. Chart.js에 전달할 최종 데이터 객체
+
   // 바 그래프 데이터 객체 만들기
-  const data = {
-    labels: [selectedCluster.cluster_name],
+  const mixedChart = {
+    labels: itemLables,
     datasets: [
       {
-        label: "선택 클러스터 평균 구매액",
-        data: [selectedCluster.avg_purchase_amount],
-        backgroundColor: "rgba(255, 99, 132, 0.5)",
-        borderColor: "rgb(75, 192, 192)",
+        type: "bar" as const,
+        label: "top 6 아이템 판매량",
+        data: BarData,
+        backgroundColor: "rgba(54, 162, 235, 0.7)",
+        borderColor: "rgba(54, 162, 235, 1)",
+        yAxisID: "y",
+        order: 2,
         borderWidth: 1,
         barThickness: 50,
       },
       {
-        label: "전체 클러스터 평균 구매액",
-        data: [overall_Avg_purchase_amount],
-        backgroundColor: "rgba(54, 162, 235, 0.5)",
-        borderColor: "rgb(54, 162, 235)",
-        borderWidth: 1,
-        barThickness: 50,
+        type: "line" as const,
+        label: "전체 아이템 판매량",
+        data: lineDataChart,
+        borderColor: "rgba(255, 99, 132, 1)",
+        backgroundColor: "rgba(255, 99, 132, 0.2)",
+        yAxisID: "y",
+        order: 1,
       },
     ],
   };
 
-  const subscribedRate = selectedCluster.subscription_rate * 100;
-  const unsubscribedRate = (1 - selectedCluster.subscription_rate) * 100;
-
-  const subscriptionData = {
-    labels: [
-      `구독 중  (${subscribedRate.toFixed(1)}%)`,
-      `비구독 중 (${unsubscribedRate.toFixed(1)}%)`,
-    ],
-    datasets: [
-      {
-        // label: "구독비율",
-        data: [subscribedRate, unsubscribedRate],
-        backgroundColor: [
-          "rgba(54, 162, 235, 0.6)", // 구독자 색상
-          "rgba(255, 99, 132, 0.6)", // 비구독자 색상
-        ],
-        borderColor: ["rgba(54, 162, 235, 1)", "rgba(255, 99, 132, 1)"],
-        borderWidth: 1,
-        barThickness: 50,
-      },
-    ],
-  };
-
-  const barChartOptions = {
-    responsive: true,
-    maintainAspectRatio: false,
-    indexAxis: "y" as const,
-
+  const mixedChartOption = {
+    responsive: true, //
     plugins: {
-      legend: {
-        position: "top" as const,
+      legnd: {
+        display: true,
       },
       title: {
         display: true,
-        text: "평균 구매액 비교",
-        font: { size: 16 },
+        text: `총 ${summary?.total_unique_items} 가지 아이템중  Top 6 구매 수량`,
+        font: {
+          size: 18,
+        },
       },
       tooltip: {
+        mode: "index" as const,
+        intersect: false,
         callbacks: {
-          label: function (context: TooltipItem<"bar">) {
+          label: function (context: TooltipItem<"bar" | "line">) {
             let label = context.dataset.label || "";
 
             if (label) {
               label += ": ";
             }
-
-            if (context.parsed.x !== null && context.parsed.x !== undefined) {
-              label += "$" + context.parsed.x;
+            if (context.parsed.y !== null) {
+              label = `${context.parsed.y.toFixed(2)}%`;
             }
             return label;
           },
         },
       },
     },
-  };
-  const pieChartOptions = {
-    responsive: true,
-    maintainAspectRatio: false,
-    plugins: {
-      tooltip: {
-        callbacks: {
-          // eslint-disable-next-line @typescript-eslint/no-unused-vars
-          title: function (_tooltipItems: TooltipItem<"pie" | "doughnut">[]) {
-            return "";
-          },
-
-          label: function (_context: TooltipItem<"pie" | "doughnut">) {
-            return _context.label || "";
-          },
+    scales: {
+      y: {
+        beginAtZero: true,
+        title: {
+          display: true,
+          text: "구매율 (%)",
         },
       },
+    },
+  };
+
+  const topCategories = selectedCluster.top_categories;
+  const categoryPercentage = topCategories.map(
+    (item) => item.cluster_percentage
+  );
+  const categoryLables = topCategories.map((item) => item.category);
+
+  const categoryData = {
+    labels: categoryLables,
+    datasets: [
+      {
+        label: "카테고리 비율",
+        data: categoryPercentage,
+        backgroundColor: [
+          "rgb(255, 99, 132)",
+          "rgb(54, 162, 235)",
+          "rgb(255, 205, 86)",
+          "rgb(255, 165,0)",
+        ],
+      },
+    ],
+  };
+
+  const categoryOptions = {
+    responsive: true,
+    maintainAspectRatio: false,
+
+    plugins: {
       legend: {
         position: "top" as const,
       },
       title: {
         display: true,
-        text: "클러스터 구독 비율",
+        text: `Top 카테고리 (전체 ${summary?.total_unique_categories}종)`,
         font: { size: 16 },
+      },
+      tooltip: {
+        callbacks: {
+          label: function (context: TooltipItem<"pie" | "doughnut">) {
+            const datasetLabel = context.dataset.label || "비율";
+
+            const value = context.parsed;
+            return `  ${datasetLabel}: ${value.toFixed(2)}%`;
+          },
+        },
       },
     },
   };
 
+  const topLocation = selectedCluster.top_location;
+  const locationLabel = topLocation.map((item) => item.location);
+  const locationPercentage = topLocation.map((item) => item.cluster_percentage);
+
+  const barLocation = {
+    labels: locationLabel,
+    datasets: [
+      {
+        label: "판매지역",
+        data: locationPercentage,
+        backgroundColor: [
+          "rgba(255, 99, 132, 0.2)",
+          "rgba(255, 159, 64, 0.2)",
+          "rgba(255, 205, 86, 0.2)",
+        ],
+        borderWidth: 1,
+        barThickness: 50,
+      },
+    ],
+  };
+
+  const locationOption = {
+    indexAxis: "x" as const,
+    responsive: true,
+    elements: {
+      bar: {
+        borderWidth: 3,
+      },
+    },
+    plugins: {
+      legend: {
+        display: false,
+      },
+      title: {
+        display: true,
+        text: `주요 고객 분포 지역 (전체 ${summary?.total_unique_locations}개 주)`,
+        font: {
+          size: 18,
+        },
+      },
+      tooltip: {
+        callbacks: {
+          label: function (context: TooltipItem<"bar">) {
+            const datasetLabel = context.dataset.label || "";
+            const value = context.formattedValue;
+
+            return ` ${datasetLabel} ${value} %`;
+          },
+        },
+      },
+    },
+    scales: {
+      y: {
+        beginAtZero: true,
+        title: {
+          display: true,
+          text: "구매지역(%)",
+        },
+        ticks: {
+          callback: function (value: string | number) {
+            if (Number.isInteger(value)) {
+              return value;
+            }
+            return "";
+          },
+        },
+      },
+    },
+  };
+
+  const topSeason = selectedCluster.top_season;
+  const seasonLabel = topSeason.map((item) => item.season);
+  const seasonPercentage = topSeason.map((item) => item.cluster_percentage);
+
+  const seasonPie = {
+    labels: seasonLabel,
+    datasets: [
+      {
+        label: "계절에 따른 판매 순위",
+        data: seasonPercentage,
+        backgroundColor: [
+          "rgb(160, 82, 45)",
+          "rgb(65, 105, 225)",
+          "rgb(255, 215,0)",
+          "rgb(211, 211, 211)",
+        ],
+      },
+    ],
+  };
+
+  const seasonOptions = {
+    indexAxis: "x" as const,
+    responsive: true,
+    plugins: {
+      legend: {
+        position: "top" as const,
+      },
+      title: {
+        display: true,
+        text: "계절에 따른 판매 순위",
+        font: {
+          size: 18,
+        },
+      },
+
+      tooltip: {
+        callbacks: {
+          label: function (context: TooltipItem<"polarArea">) {
+            const datasetLabel = context.dataset.label || "";
+            const value = context.raw as number;
+
+            return ` ${datasetLabel} ${value.toFixed(2)} %`;
+          },
+        },
+      },
+    },
+    scales: {
+      r: {
+        // 'r'은 방사형(radial) 축을 의미합니다.
+        ticks: {
+          display: false, // 눈금 텍스트를 숨깁니다.
+        },
+      },
+    },
+  };
+
+  const topPayments = selectedCluster.top_payment.slice(0, 3);
+  console.log("실제로 렌더링에 사용되는 topPayments 데이터:", topPayments);
+
   return (
-    <>
-      <h3 className="text-2xl font-bold mb-4 text-gray-700 text-center">
-        {selectedCluster.cluster_name}
-      </h3>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 my-6">
-        <div className="bg-white p-6 rounded-xl shadow-lg flex-1 min-w-[200px]">
-          <div className="flex items-center justify-center sm:justify-start space-x-3 sm:space-x-4">
-            <div className="flex-shrink-0 p-2 bg-blue-100 rounded-full">
-              <FaUsers className="h-6 w-6 sm:h-7 sm:w-7 text-blue-600" />
-            </div>
-
-            <div className="text-left">
-              <h4 className="text-sm text-gray-500 mb-1">고객 수</h4>
-              <p className="text-gray-800 font-bold text-3xl">
-                {`${selectedCluster.num_customers} 명`}
-              </p>
-            </div>
-          </div>
+    <div className="flex flex-col gap-12">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="relative h-[400px] w-full">
+          <Chart type="bar" data={mixedChart} options={mixedChartOption} />
         </div>
 
-        <div className="bg-white p-6 rounded-xl shadow-lg flex-1 min-w-[200px]">
-          <div className="flex items-center justify-center sm:justify-start space-x-3 sm:space-x-4">
-            <div className="flex-shrink-0 p-2 bg-green-100 rounded-full">
-              <FaHandHoldingHeart className="h-6 w-6 sm:h-7 sm:w-7 text-green-600" />
-            </div>
-
-            <div className="text-left">
-              <h4 className="text-sm text-gray-500 mb-1">평균 연령</h4>
-              <p className="text-gray-800 font-bold text-2xl">
-                {`${selectedCluster.avg_age} 세`}
-              </p>
-            </div>
-          </div>
+        <div className="relative h-[400px] w-full">
+          <Bar data={barLocation} options={locationOption} />
         </div>
 
-        <div className="bg-white p-6 rounded-xl shadow-lg flex-1 min-w-[200px]">
-          <div className="flex items-center justify-center sm:justify-start space-x-3 sm:space-x-4">
-            <div className="flex-shrink-0 p-2 bg-purple-100 rounded-full">
-              <FaShoppingCart className="h-6 w-6 sm:h-7 sm:w-7 text-purple-600" />
-            </div>
+        <div className="relative h-[400px] w-full mx-auto max-w-sm">
+          <Doughnut data={categoryData} options={categoryOptions} />
+        </div>
 
-            <div className="text-left">
-              <h4 className="text-gray-500 text-sm mb-1">
-                흔하게 나타난 쇼핑 빈도
-              </h4>
-              <p className="font-bold text-2xl text-gray-800">
-                {selectedCluster.dominant_frequency}
-              </p>
-            </div>
-          </div>
+        <div className="relative h-[400px] w-full">
+          <PolarArea data={seasonPie} options={seasonOptions} />
         </div>
       </div>
-      <div className="mt-8 bg-white p-6 rounded-xl shadow-lg">
-        <h3 className="text-2xl font-bold mb-4 text-gray-700 text-center">
-          평균 구매액 시각화
+
+      <div className="mt-16">
+        <h3 className="text-xl font-bold mb-4 text-center">
+          Top Payment Methods
         </h3>
-        <div className="flex gap-6">
-          <div className="flex-1 min-w-0">
-            <div className="relative h-[400px] w-full">
-              <Bar data={data} options={barChartOptions} />
-            </div>
-          </div>
 
-          <div className="flex-1 min-w-0">
-            <div className="relative h-[400px] w-full mx-auto max-w-sm">
-              <Pie data={subscriptionData} options={pieChartOptions} />
+        <div className="flex justify-evenly">
+          {topPayments.map((payment) => (
+            <div className="w-60" key={payment.payment}>
+              <TopPaymentCard
+                title={payment.payment}
+                count={payment.cluster_count}
+                percentage={payment.cluster_percentage}
+              />
             </div>
-          </div>
-        </div>
-      </div>
-      <div className="mt-8 bg-white p-6 rounded-xl shadow-lg">
-        <h3 className="text-2xl font-semibold  mb-4  text-gray-700 text-center">
-          마케팅 제안
-        </h3>
-        <div>
-          {(selectedCluster.marketing_suggestion || "")
-            .split(/(?<=\.)\s+/)
-            .filter((sentence) => sentence.trim() !== "")
-            .map((sentence, index) => {
-              return (
-                <p
-                  key={index}
-                  className=" text-base text-gray-700 text-center leading-relaxed p-2 mb-2"
-                >
-                  {sentence.trim()}
-                </p>
-              );
-            })}
+          ))}
         </div>
       </div>
 
-      <div className="mt-8 bg-white p-6 rounded-xl shadow-lg">
-        <div className="text-2xl font-semibold  mb-4  text-gray-700 text-center">
-          <AiSuggestionBox clusterData={selectedCluster} />
-        </div>
+      <div>
+        <Separator className="my-8" />
+        <Alert className="text-center p-6">
+          <AlertTitle className="text-2xl font-bold text-gray-800 mb-6">
+            AI 기반 마케팅 제안
+          </AlertTitle>
+          <AlertDescription className="flex justify-center mt-4">
+            <AiSuggestionBox clusterData={selectedCluster} />
+          </AlertDescription>
+        </Alert>
       </div>
-    </>
+    </div>
   );
 }
