@@ -12,106 +12,137 @@
             "top_items": [
                 {
                     "items": "Sneakers",
-                    "count": 28,
-                    "percentage": 5.17
+                    "cluster_count": 28,
+                    "cluster_percentage": 5.17,
+                    "overall_percentage": 3.72
                 },
                 {
                     "items": "Coat",
-                    "count": 27,
-                    "percentage": 4.98
+                    "cluster_count": 27,
+                    "cluster_percentage": 4.98,
+                    "overall_percentage": 4.13
                 },
                 {
                     "items": "Jacket",
-                    "count": 26,
-                    "percentage": 4.8
+                    "cluster_count": 26,
+                    "cluster_percentage": 4.8,
+                    "overall_percentage": 4.18
                 },
                 {
                     "items": "Sweater",
-                    "count": 25,
-                    "percentage": 4.61
+                    "cluster_count": 25,
+                    "cluster_percentage": 4.61,
+                    "overall_percentage": 4.21
                 },
                 {
                     "items": "Boots",
-                    "count": 25,
-                    "percentage": 4.61
+                    "cluster_count": 25,
+                    "cluster_percentage": 4.61,
+                    "overall_percentage": 3.69
                 }
             ],
             "top_categories": [
                 {
                     "category": "Clothing",
-                    "count": 223,
-                    "percentage": 41.14
+                    "cluster_count": 223,
+                    "cluster_percentage": 41.14,
+                    "overall_percentage": 44.54
                 },
                 {
                     "category": "Accessories",
-                    "count": 170,
-                    "percentage": 31.37
+                    "cluster_count": 170,
+                    "cluster_percentage": 31.37,
+                    "overall_percentage": 31.79
                 },
                 {
                     "category": "Footwear",
-                    "count": 96,
-                    "percentage": 17.71
+                    "cluster_count": 96,
+                    "cluster_percentage": 17.71,
+                    "overall_percentage": 15.36
                 },
                 {
                     "category": "Outerwear",
-                    "count": 53,
-                    "percentage": 9.78
+                    "cluster_count": 53,
+                    "cluster_percentage": 9.78,
+                    "overall_percentage": 8.31
                 }
             ],
             "top_location": [
                 {
                     "location": "Nebraska",
-                    "count": 18,
-                    "percentage": 3.32
+                    "cluster_count": 18,
+                    "cluster_percentage": 3.32,
+                    "overall_percentage": 2.23
                 },
                 {
                     "location": "Ohio",
-                    "count": 18,
-                    "percentage": 3.32
+                    "cluster_count": 18,
+                    "cluster_percentage": 3.32,
+                    "overall_percentage": 1.97
                 },
                 {
                     "location": "Alaska",
-                    "count": 18,
-                    "percentage": 3.32
+                    "cluster_count": 18,
+                    "cluster_percentage": 3.32,
+                    "overall_percentage": 1.85
+                },
+                {
+                    "location": "Alabama",
+                    "cluster_count": 16,
+                    "cluster_percentage": 2.95,
+                    "overall_percentage": 2.28
+                },
+                {
+                    "location": "Minnesota",
+                    "cluster_count": 16,
+                    "cluster_percentage": 2.95,
+                    "overall_percentage": 2.26
                 }
             ],
             "top_season": [
                 {
                     "season": "Fall",
-                    "count": 143,
-                    "percentage": 26.38
+                    "cluster_count": 143,
+                    "cluster_percentage": 26.38,
+                    "overall_percentage": 25.0
                 },
                 {
                     "season": "Winter",
-                    "count": 139,
-                    "percentage": 25.65
+                    "cluster_count": 139,
+                    "cluster_percentage": 25.65,
+                    "overall_percentage": 24.9
                 },
                 {
                     "season": "Spring",
-                    "count": 133,
-                    "percentage": 24.54
+                    "cluster_count": 133,
+                    "cluster_percentage": 24.54,
+                    "overall_percentage": 25.62
                 },
                 {
                     "season": "Summer",
-                    "count": 127,
-                    "percentage": 23.43
+                    "cluster_count": 127,
+                    "cluster_percentage": 23.43,
+                    "overall_percentage": 24.49
                 }
             ],
             "top_payment": [
                 {
                     "payment": "Debit Card",
-                    "count": 95,
-                    "percentage": 17.53
+                    "cluster_count": 95,
+                    "cluster_percentage": 17.53,
+                    "overall_percentage": 16.31
                 },
                 {
                     "payment": "Credit Card",
-                    "count": 94,
-                    "percentage": 17.34
+                    "cluster_count": 94,
+                    "cluster_percentage": 17.34,
+                    "overall_percentage": 17.21
                 },
                 {
                     "payment": "Cash",
-                    "count": 93,
-                    "percentage": 17.16
+                    "cluster_count": 93,
+                    "cluster_percentage": 17.16,
+                    "overall_percentage": 17.18
                 }
             ],
             "discount_usage_rate": 44.83,
@@ -129,106 +160,137 @@
             "top_items": [
                 {
                     "items": "Blouse",
-                    "count": 32,
-                    "percentage": 5.59
+                    "cluster_count": 32,
+                    "cluster_percentage": 5.59,
+                    "overall_percentage": 4.38
                 },
                 {
                     "items": "Dress",
-                    "count": 31,
-                    "percentage": 5.42
+                    "cluster_count": 31,
+                    "cluster_percentage": 5.42,
+                    "overall_percentage": 4.26
                 },
                 {
                     "items": "Shirt",
-                    "count": 31,
-                    "percentage": 5.42
+                    "cluster_count": 31,
+                    "cluster_percentage": 5.42,
+                    "overall_percentage": 4.33
                 },
                 {
                     "items": "Socks",
-                    "count": 29,
-                    "percentage": 5.07
+                    "cluster_count": 29,
+                    "cluster_percentage": 5.07,
+                    "overall_percentage": 4.08
                 },
                 {
                     "items": "Scarf",
-                    "count": 29,
-                    "percentage": 5.07
+                    "cluster_count": 29,
+                    "cluster_percentage": 5.07,
+                    "overall_percentage": 4.03
                 }
             ],
             "top_categories": [
                 {
                     "category": "Clothing",
-                    "count": 258,
-                    "percentage": 45.1
+                    "cluster_count": 258,
+                    "cluster_percentage": 45.1,
+                    "overall_percentage": 44.54
                 },
                 {
                     "category": "Accessories",
-                    "count": 184,
-                    "percentage": 32.17
+                    "cluster_count": 184,
+                    "cluster_percentage": 32.17,
+                    "overall_percentage": 31.79
                 },
                 {
                     "category": "Footwear",
-                    "count": 87,
-                    "percentage": 15.21
+                    "cluster_count": 87,
+                    "cluster_percentage": 15.21,
+                    "overall_percentage": 15.36
                 },
                 {
                     "category": "Outerwear",
-                    "count": 43,
-                    "percentage": 7.52
+                    "cluster_count": 43,
+                    "cluster_percentage": 7.52,
+                    "overall_percentage": 8.31
                 }
             ],
             "top_location": [
                 {
                     "location": "South Carolina",
-                    "count": 18,
-                    "percentage": 3.15
+                    "cluster_count": 18,
+                    "cluster_percentage": 3.15,
+                    "overall_percentage": 1.95
                 },
                 {
                     "location": "California",
-                    "count": 17,
-                    "percentage": 2.97
+                    "cluster_count": 17,
+                    "cluster_percentage": 2.97,
+                    "overall_percentage": 2.44
                 },
                 {
                     "location": "Montana",
-                    "count": 17,
-                    "percentage": 2.97
+                    "cluster_count": 17,
+                    "cluster_percentage": 2.97,
+                    "overall_percentage": 2.46
+                },
+                {
+                    "location": "Nebraska",
+                    "cluster_count": 16,
+                    "cluster_percentage": 2.8,
+                    "overall_percentage": 2.23
+                },
+                {
+                    "location": "Wisconsin",
+                    "cluster_count": 15,
+                    "cluster_percentage": 2.62,
+                    "overall_percentage": 1.92
                 }
             ],
             "top_season": [
                 {
                     "season": "Fall",
-                    "count": 157,
-                    "percentage": 27.45
+                    "cluster_count": 157,
+                    "cluster_percentage": 27.45,
+                    "overall_percentage": 25.0
                 },
                 {
                     "season": "Summer",
-                    "count": 143,
-                    "percentage": 25.0
+                    "cluster_count": 143,
+                    "cluster_percentage": 25.0,
+                    "overall_percentage": 24.49
                 },
                 {
                     "season": "Spring",
-                    "count": 137,
-                    "percentage": 23.95
+                    "cluster_count": 137,
+                    "cluster_percentage": 23.95,
+                    "overall_percentage": 25.62
                 },
                 {
                     "season": "Winter",
-                    "count": 135,
-                    "percentage": 23.6
+                    "cluster_count": 135,
+                    "cluster_percentage": 23.6,
+                    "overall_percentage": 24.9
                 }
             ],
             "top_payment": [
                 {
                     "payment": "PayPal",
-                    "count": 103,
-                    "percentage": 18.01
+                    "cluster_count": 103,
+                    "cluster_percentage": 18.01,
+                    "overall_percentage": 17.36
                 },
                 {
                     "payment": "Venmo",
-                    "count": 103,
-                    "percentage": 18.01
+                    "cluster_count": 103,
+                    "cluster_percentage": 18.01,
+                    "overall_percentage": 16.26
                 },
                 {
                     "payment": "Debit Card",
-                    "count": 101,
-                    "percentage": 17.66
+                    "cluster_count": 101,
+                    "cluster_percentage": 17.66,
+                    "overall_percentage": 16.31
                 }
             ],
             "discount_usage_rate": 41.61,
@@ -246,106 +308,137 @@
             "top_items": [
                 {
                     "items": "Pants",
-                    "count": 32,
-                    "percentage": 5.79
+                    "cluster_count": 32,
+                    "cluster_percentage": 5.79,
+                    "overall_percentage": 4.38
                 },
                 {
                     "items": "Hat",
-                    "count": 29,
-                    "percentage": 5.24
+                    "cluster_count": 29,
+                    "cluster_percentage": 5.24,
+                    "overall_percentage": 3.95
                 },
                 {
                     "items": "Shirt",
-                    "count": 28,
-                    "percentage": 5.06
+                    "cluster_count": 28,
+                    "cluster_percentage": 5.06,
+                    "overall_percentage": 4.33
                 },
                 {
                     "items": "Jeans",
-                    "count": 28,
-                    "percentage": 5.06
+                    "cluster_count": 28,
+                    "cluster_percentage": 5.06,
+                    "overall_percentage": 3.18
                 },
                 {
                     "items": "Dress",
-                    "count": 27,
-                    "percentage": 4.88
+                    "cluster_count": 27,
+                    "cluster_percentage": 4.88,
+                    "overall_percentage": 4.26
                 }
             ],
             "top_categories": [
                 {
                     "category": "Clothing",
-                    "count": 263,
-                    "percentage": 47.56
+                    "cluster_count": 263,
+                    "cluster_percentage": 47.56,
+                    "overall_percentage": 44.54
                 },
                 {
                     "category": "Accessories",
-                    "count": 171,
-                    "percentage": 30.92
+                    "cluster_count": 171,
+                    "cluster_percentage": 30.92,
+                    "overall_percentage": 31.79
                 },
                 {
                     "category": "Footwear",
-                    "count": 75,
-                    "percentage": 13.56
+                    "cluster_count": 75,
+                    "cluster_percentage": 13.56,
+                    "overall_percentage": 15.36
                 },
                 {
                     "category": "Outerwear",
-                    "count": 44,
-                    "percentage": 7.96
+                    "cluster_count": 44,
+                    "cluster_percentage": 7.96,
+                    "overall_percentage": 8.31
                 }
             ],
             "top_location": [
                 {
                     "location": "Minnesota",
-                    "count": 18,
-                    "percentage": 3.25
+                    "cluster_count": 18,
+                    "cluster_percentage": 3.25,
+                    "overall_percentage": 2.26
                 },
                 {
                     "location": "California",
-                    "count": 18,
-                    "percentage": 3.25
+                    "cluster_count": 18,
+                    "cluster_percentage": 3.25,
+                    "overall_percentage": 2.44
                 },
                 {
                     "location": "New York",
-                    "count": 17,
-                    "percentage": 3.07
+                    "cluster_count": 17,
+                    "cluster_percentage": 3.07,
+                    "overall_percentage": 2.23
+                },
+                {
+                    "location": "Delaware",
+                    "cluster_count": 16,
+                    "cluster_percentage": 2.89,
+                    "overall_percentage": 2.21
+                },
+                {
+                    "location": "Idaho",
+                    "cluster_count": 16,
+                    "cluster_percentage": 2.89,
+                    "overall_percentage": 2.38
                 }
             ],
             "top_season": [
                 {
                     "season": "Spring",
-                    "count": 144,
-                    "percentage": 26.04
+                    "cluster_count": 144,
+                    "cluster_percentage": 26.04,
+                    "overall_percentage": 25.62
                 },
                 {
                     "season": "Winter",
-                    "count": 139,
-                    "percentage": 25.14
+                    "cluster_count": 139,
+                    "cluster_percentage": 25.14,
+                    "overall_percentage": 24.9
                 },
                 {
                     "season": "Fall",
-                    "count": 137,
-                    "percentage": 24.77
+                    "cluster_count": 137,
+                    "cluster_percentage": 24.77,
+                    "overall_percentage": 25.0
                 },
                 {
                     "season": "Summer",
-                    "count": 133,
-                    "percentage": 24.05
+                    "cluster_count": 133,
+                    "cluster_percentage": 24.05,
+                    "overall_percentage": 24.49
                 }
             ],
             "top_payment": [
                 {
                     "payment": "Credit Card",
-                    "count": 107,
-                    "percentage": 19.35
+                    "cluster_count": 107,
+                    "cluster_percentage": 19.35,
+                    "overall_percentage": 17.21
                 },
                 {
                     "payment": "Cash",
-                    "count": 98,
-                    "percentage": 17.72
+                    "cluster_count": 98,
+                    "cluster_percentage": 17.72,
+                    "overall_percentage": 17.18
                 },
                 {
                     "payment": "PayPal",
-                    "count": 97,
-                    "percentage": 17.54
+                    "cluster_count": 97,
+                    "cluster_percentage": 17.54,
+                    "overall_percentage": 17.36
                 }
             ],
             "discount_usage_rate": 42.86,
@@ -363,106 +456,137 @@
             "top_items": [
                 {
                     "items": "Handbag",
-                    "count": 31,
-                    "percentage": 5.31
+                    "cluster_count": 31,
+                    "cluster_percentage": 5.31,
+                    "overall_percentage": 3.92
                 },
                 {
                     "items": "Blouse",
-                    "count": 31,
-                    "percentage": 5.31
+                    "cluster_count": 31,
+                    "cluster_percentage": 5.31,
+                    "overall_percentage": 4.38
                 },
                 {
                     "items": "Jacket",
-                    "count": 29,
-                    "percentage": 4.97
+                    "cluster_count": 29,
+                    "cluster_percentage": 4.97,
+                    "overall_percentage": 4.18
                 },
                 {
                     "items": "Dress",
-                    "count": 28,
-                    "percentage": 4.79
+                    "cluster_count": 28,
+                    "cluster_percentage": 4.79,
+                    "overall_percentage": 4.26
                 },
                 {
                     "items": "Belt",
-                    "count": 27,
-                    "percentage": 4.62
+                    "cluster_count": 27,
+                    "cluster_percentage": 4.62,
+                    "overall_percentage": 4.13
                 }
             ],
             "top_categories": [
                 {
                     "category": "Clothing",
-                    "count": 265,
-                    "percentage": 45.38
+                    "cluster_count": 265,
+                    "cluster_percentage": 45.38,
+                    "overall_percentage": 44.54
                 },
                 {
                     "category": "Accessories",
-                    "count": 180,
-                    "percentage": 30.82
+                    "cluster_count": 180,
+                    "cluster_percentage": 30.82,
+                    "overall_percentage": 31.79
                 },
                 {
                     "category": "Footwear",
-                    "count": 92,
-                    "percentage": 15.75
+                    "cluster_count": 92,
+                    "cluster_percentage": 15.75,
+                    "overall_percentage": 15.36
                 },
                 {
                     "category": "Outerwear",
-                    "count": 47,
-                    "percentage": 8.05
+                    "cluster_count": 47,
+                    "cluster_percentage": 8.05,
+                    "overall_percentage": 8.31
                 }
             ],
             "top_location": [
                 {
                     "location": "Idaho",
-                    "count": 19,
-                    "percentage": 3.25
+                    "cluster_count": 19,
+                    "cluster_percentage": 3.25,
+                    "overall_percentage": 2.38
                 },
                 {
                     "location": "Alabama",
-                    "count": 18,
-                    "percentage": 3.08
+                    "cluster_count": 18,
+                    "cluster_percentage": 3.08,
+                    "overall_percentage": 2.28
                 },
                 {
                     "location": "Nebraska",
-                    "count": 18,
-                    "percentage": 3.08
+                    "cluster_count": 18,
+                    "cluster_percentage": 3.08,
+                    "overall_percentage": 2.23
+                },
+                {
+                    "location": "Maine",
+                    "cluster_count": 17,
+                    "cluster_percentage": 2.91,
+                    "overall_percentage": 1.97
+                },
+                {
+                    "location": "North Dakota",
+                    "cluster_count": 17,
+                    "cluster_percentage": 2.91,
+                    "overall_percentage": 2.13
                 }
             ],
             "top_season": [
                 {
                     "season": "Summer",
-                    "count": 152,
-                    "percentage": 26.03
+                    "cluster_count": 152,
+                    "cluster_percentage": 26.03,
+                    "overall_percentage": 24.49
                 },
                 {
                     "season": "Fall",
-                    "count": 147,
-                    "percentage": 25.17
+                    "cluster_count": 147,
+                    "cluster_percentage": 25.17,
+                    "overall_percentage": 25.0
                 },
                 {
                     "season": "Spring",
-                    "count": 146,
-                    "percentage": 25.0
+                    "cluster_count": 146,
+                    "cluster_percentage": 25.0,
+                    "overall_percentage": 25.62
                 },
                 {
                     "season": "Winter",
-                    "count": 139,
-                    "percentage": 23.8
+                    "cluster_count": 139,
+                    "cluster_percentage": 23.8,
+                    "overall_percentage": 24.9
                 }
             ],
             "top_payment": [
                 {
                     "payment": "Credit Card",
-                    "count": 115,
-                    "percentage": 19.69
+                    "cluster_count": 115,
+                    "cluster_percentage": 19.69,
+                    "overall_percentage": 17.21
                 },
                 {
                     "payment": "PayPal",
-                    "count": 100,
-                    "percentage": 17.12
+                    "cluster_count": 100,
+                    "cluster_percentage": 17.12,
+                    "overall_percentage": 17.36
                 },
                 {
                     "payment": "Venmo",
-                    "count": 98,
-                    "percentage": 16.78
+                    "cluster_count": 98,
+                    "cluster_percentage": 16.78,
+                    "overall_percentage": 16.26
                 }
             ],
             "discount_usage_rate": 44.18,
@@ -480,106 +604,137 @@
             "top_items": [
                 {
                     "items": "Sweater",
-                    "count": 31,
-                    "percentage": 5.75
+                    "cluster_count": 31,
+                    "cluster_percentage": 5.75,
+                    "overall_percentage": 4.21
                 },
                 {
                     "items": "Skirt",
-                    "count": 27,
-                    "percentage": 5.01
+                    "cluster_count": 27,
+                    "cluster_percentage": 5.01,
+                    "overall_percentage": 4.05
                 },
                 {
                     "items": "Pants",
-                    "count": 26,
-                    "percentage": 4.82
+                    "cluster_count": 26,
+                    "cluster_percentage": 4.82,
+                    "overall_percentage": 4.38
                 },
                 {
                     "items": "Shirt",
-                    "count": 26,
-                    "percentage": 4.82
+                    "cluster_count": 26,
+                    "cluster_percentage": 4.82,
+                    "overall_percentage": 4.33
                 },
                 {
                     "items": "Coat",
-                    "count": 26,
-                    "percentage": 4.82
+                    "cluster_count": 26,
+                    "cluster_percentage": 4.82,
+                    "overall_percentage": 4.13
                 }
             ],
             "top_categories": [
                 {
                     "category": "Clothing",
-                    "count": 242,
-                    "percentage": 44.9
+                    "cluster_count": 242,
+                    "cluster_percentage": 44.9,
+                    "overall_percentage": 44.54
                 },
                 {
                     "category": "Accessories",
-                    "count": 166,
-                    "percentage": 30.8
+                    "cluster_count": 166,
+                    "cluster_percentage": 30.8,
+                    "overall_percentage": 31.79
                 },
                 {
                     "category": "Footwear",
-                    "count": 86,
-                    "percentage": 15.96
+                    "cluster_count": 86,
+                    "cluster_percentage": 15.96,
+                    "overall_percentage": 15.36
                 },
                 {
                     "category": "Outerwear",
-                    "count": 45,
-                    "percentage": 8.35
+                    "cluster_count": 45,
+                    "cluster_percentage": 8.35,
+                    "overall_percentage": 8.31
                 }
             ],
             "top_location": [
                 {
                     "location": "Louisiana",
-                    "count": 20,
-                    "percentage": 3.71
+                    "cluster_count": 20,
+                    "cluster_percentage": 3.71,
+                    "overall_percentage": 2.15
                 },
                 {
                     "location": "Georgia",
-                    "count": 18,
-                    "percentage": 3.34
+                    "cluster_count": 18,
+                    "cluster_percentage": 3.34,
+                    "overall_percentage": 2.03
                 },
                 {
                     "location": "Oklahoma",
-                    "count": 16,
-                    "percentage": 2.97
+                    "cluster_count": 16,
+                    "cluster_percentage": 2.97,
+                    "overall_percentage": 1.92
+                },
+                {
+                    "location": "Indiana",
+                    "cluster_count": 15,
+                    "cluster_percentage": 2.78,
+                    "overall_percentage": 2.03
+                },
+                {
+                    "location": "North Carolina",
+                    "cluster_count": 15,
+                    "cluster_percentage": 2.78,
+                    "overall_percentage": 2.0
                 }
             ],
             "top_season": [
                 {
                     "season": "Winter",
-                    "count": 145,
-                    "percentage": 26.9
+                    "cluster_count": 145,
+                    "cluster_percentage": 26.9,
+                    "overall_percentage": 24.9
                 },
                 {
                     "season": "Spring",
-                    "count": 142,
-                    "percentage": 26.35
+                    "cluster_count": 142,
+                    "cluster_percentage": 26.35,
+                    "overall_percentage": 25.62
                 },
                 {
                     "season": "Fall",
-                    "count": 128,
-                    "percentage": 23.75
+                    "cluster_count": 128,
+                    "cluster_percentage": 23.75,
+                    "overall_percentage": 25.0
                 },
                 {
                     "season": "Summer",
-                    "count": 124,
-                    "percentage": 23.01
+                    "cluster_count": 124,
+                    "cluster_percentage": 23.01,
+                    "overall_percentage": 24.49
                 }
             ],
             "top_payment": [
                 {
                     "payment": "Credit Card",
-                    "count": 104,
-                    "percentage": 19.29
+                    "cluster_count": 104,
+                    "cluster_percentage": 19.29,
+                    "overall_percentage": 17.21
                 },
                 {
                     "payment": "Cash",
-                    "count": 101,
-                    "percentage": 18.74
+                    "cluster_count": 101,
+                    "cluster_percentage": 18.74,
+                    "overall_percentage": 17.18
                 },
                 {
                     "payment": "PayPal",
-                    "count": 94,
-                    "percentage": 17.44
+                    "cluster_count": 94,
+                    "cluster_percentage": 17.44,
+                    "overall_percentage": 17.36
                 }
             ],
             "discount_usage_rate": 43.41,
@@ -597,106 +752,137 @@
             "top_items": [
                 {
                     "items": "Sunglasses",
-                    "count": 36,
-                    "percentage": 6.39
+                    "cluster_count": 36,
+                    "cluster_percentage": 6.39,
+                    "overall_percentage": 4.13
                 },
                 {
                     "items": "Boots",
-                    "count": 31,
-                    "percentage": 5.51
+                    "cluster_count": 31,
+                    "cluster_percentage": 5.51,
+                    "overall_percentage": 3.69
                 },
                 {
                     "items": "Hat",
-                    "count": 29,
-                    "percentage": 5.15
+                    "cluster_count": 29,
+                    "cluster_percentage": 5.15,
+                    "overall_percentage": 3.95
                 },
                 {
                     "items": "Pants",
-                    "count": 28,
-                    "percentage": 4.97
+                    "cluster_count": 28,
+                    "cluster_percentage": 4.97,
+                    "overall_percentage": 4.38
                 },
                 {
                     "items": "Coat",
-                    "count": 27,
-                    "percentage": 4.8
+                    "cluster_count": 27,
+                    "cluster_percentage": 4.8,
+                    "overall_percentage": 4.13
                 }
             ],
             "top_categories": [
                 {
                     "category": "Clothing",
-                    "count": 239,
-                    "percentage": 42.45
+                    "cluster_count": 239,
+                    "cluster_percentage": 42.45,
+                    "overall_percentage": 44.54
                 },
                 {
                     "category": "Accessories",
-                    "count": 189,
-                    "percentage": 33.57
+                    "cluster_count": 189,
+                    "cluster_percentage": 33.57,
+                    "overall_percentage": 31.79
                 },
                 {
                     "category": "Footwear",
-                    "count": 83,
-                    "percentage": 14.74
+                    "cluster_count": 83,
+                    "cluster_percentage": 14.74,
+                    "overall_percentage": 15.36
                 },
                 {
                     "category": "Outerwear",
-                    "count": 52,
-                    "percentage": 9.24
+                    "cluster_count": 52,
+                    "cluster_percentage": 9.24,
+                    "overall_percentage": 8.31
                 }
             ],
             "top_location": [
                 {
                     "location": "Missouri",
-                    "count": 24,
-                    "percentage": 4.26
+                    "cluster_count": 24,
+                    "cluster_percentage": 4.26,
+                    "overall_percentage": 2.08
                 },
                 {
                     "location": "Vermont",
-                    "count": 18,
-                    "percentage": 3.2
+                    "cluster_count": 18,
+                    "cluster_percentage": 3.2,
+                    "overall_percentage": 2.18
                 },
                 {
                     "location": "Delaware",
-                    "count": 18,
-                    "percentage": 3.2
+                    "cluster_count": 18,
+                    "cluster_percentage": 3.2,
+                    "overall_percentage": 2.21
+                },
+                {
+                    "location": "Montana",
+                    "cluster_count": 16,
+                    "cluster_percentage": 2.84,
+                    "overall_percentage": 2.46
+                },
+                {
+                    "location": "West Virginia",
+                    "cluster_count": 15,
+                    "cluster_percentage": 2.66,
+                    "overall_percentage": 2.08
                 }
             ],
             "top_season": [
                 {
                     "season": "Summer",
-                    "count": 144,
-                    "percentage": 25.58
+                    "cluster_count": 144,
+                    "cluster_percentage": 25.58,
+                    "overall_percentage": 24.49
                 },
                 {
                     "season": "Fall",
-                    "count": 143,
-                    "percentage": 25.4
+                    "cluster_count": 143,
+                    "cluster_percentage": 25.4,
+                    "overall_percentage": 25.0
                 },
                 {
                     "season": "Spring",
-                    "count": 142,
-                    "percentage": 25.22
+                    "cluster_count": 142,
+                    "cluster_percentage": 25.22,
+                    "overall_percentage": 25.62
                 },
                 {
                     "season": "Winter",
-                    "count": 134,
-                    "percentage": 23.8
+                    "cluster_count": 134,
+                    "cluster_percentage": 23.8,
+                    "overall_percentage": 24.9
                 }
             ],
             "top_payment": [
                 {
                     "payment": "Bank Transfer",
-                    "count": 109,
-                    "percentage": 19.36
+                    "cluster_count": 109,
+                    "cluster_percentage": 19.36,
+                    "overall_percentage": 15.69
                 },
                 {
                     "payment": "Cash",
-                    "count": 104,
-                    "percentage": 18.47
+                    "cluster_count": 104,
+                    "cluster_percentage": 18.47,
+                    "overall_percentage": 17.18
                 },
                 {
                     "payment": "PayPal",
-                    "count": 103,
-                    "percentage": 18.29
+                    "cluster_count": 103,
+                    "cluster_percentage": 18.29,
+                    "overall_percentage": 17.36
                 }
             ],
             "discount_usage_rate": 42.81,
@@ -714,106 +900,137 @@
             "top_items": [
                 {
                     "items": "Jewelry",
-                    "count": 32,
-                    "percentage": 5.85
+                    "cluster_count": 32,
+                    "cluster_percentage": 5.85,
+                    "overall_percentage": 4.38
                 },
                 {
                     "items": "Blouse",
-                    "count": 31,
-                    "percentage": 5.67
+                    "cluster_count": 31,
+                    "cluster_percentage": 5.67,
+                    "overall_percentage": 4.38
                 },
                 {
                     "items": "Sweater",
-                    "count": 29,
-                    "percentage": 5.3
+                    "cluster_count": 29,
+                    "cluster_percentage": 5.3,
+                    "overall_percentage": 4.21
                 },
                 {
                     "items": "Hoodie",
-                    "count": 27,
-                    "percentage": 4.94
+                    "cluster_count": 27,
+                    "cluster_percentage": 4.94,
+                    "overall_percentage": 3.87
                 },
                 {
                     "items": "Shorts",
-                    "count": 27,
-                    "percentage": 4.94
+                    "cluster_count": 27,
+                    "cluster_percentage": 4.94,
+                    "overall_percentage": 4.03
                 }
             ],
             "top_categories": [
                 {
                     "category": "Clothing",
-                    "count": 247,
-                    "percentage": 45.16
+                    "cluster_count": 247,
+                    "cluster_percentage": 45.16,
+                    "overall_percentage": 44.54
                 },
                 {
                     "category": "Accessories",
-                    "count": 180,
-                    "percentage": 32.91
+                    "cluster_count": 180,
+                    "cluster_percentage": 32.91,
+                    "overall_percentage": 31.79
                 },
                 {
                     "category": "Footwear",
-                    "count": 80,
-                    "percentage": 14.63
+                    "cluster_count": 80,
+                    "cluster_percentage": 14.63,
+                    "overall_percentage": 15.36
                 },
                 {
                     "category": "Outerwear",
-                    "count": 40,
-                    "percentage": 7.31
+                    "cluster_count": 40,
+                    "cluster_percentage": 7.31,
+                    "overall_percentage": 8.31
                 }
             ],
             "top_location": [
                 {
                     "location": "Illinois",
-                    "count": 20,
-                    "percentage": 3.66
+                    "cluster_count": 20,
+                    "cluster_percentage": 3.66,
+                    "overall_percentage": 2.36
                 },
                 {
                     "location": "Kentucky",
-                    "count": 16,
-                    "percentage": 2.93
+                    "cluster_count": 16,
+                    "cluster_percentage": 2.93,
+                    "overall_percentage": 2.03
                 },
                 {
                     "location": "New Jersey",
-                    "count": 16,
-                    "percentage": 2.93
+                    "cluster_count": 16,
+                    "cluster_percentage": 2.93,
+                    "overall_percentage": 1.72
+                },
+                {
+                    "location": "Nevada",
+                    "cluster_count": 15,
+                    "cluster_percentage": 2.74,
+                    "overall_percentage": 2.23
+                },
+                {
+                    "location": "Oregon",
+                    "cluster_count": 15,
+                    "cluster_percentage": 2.74,
+                    "overall_percentage": 1.9
                 }
             ],
             "top_season": [
                 {
                     "season": "Spring",
-                    "count": 155,
-                    "percentage": 28.34
+                    "cluster_count": 155,
+                    "cluster_percentage": 28.34,
+                    "overall_percentage": 25.62
                 },
                 {
                     "season": "Winter",
-                    "count": 140,
-                    "percentage": 25.59
+                    "cluster_count": 140,
+                    "cluster_percentage": 25.59,
+                    "overall_percentage": 24.9
                 },
                 {
                     "season": "Summer",
-                    "count": 132,
-                    "percentage": 24.13
+                    "cluster_count": 132,
+                    "cluster_percentage": 24.13,
+                    "overall_percentage": 24.49
                 },
                 {
                     "season": "Fall",
-                    "count": 120,
-                    "percentage": 21.94
+                    "cluster_count": 120,
+                    "cluster_percentage": 21.94,
+                    "overall_percentage": 25.0
                 }
             ],
             "top_payment": [
                 {
                     "payment": "Cash",
-                    "count": 98,
-                    "percentage": 17.92
+                    "cluster_count": 98,
+                    "cluster_percentage": 17.92,
+                    "overall_percentage": 17.18
                 },
                 {
                     "payment": "Debit Card",
-                    "count": 97,
-                    "percentage": 17.73
+                    "cluster_count": 97,
+                    "cluster_percentage": 17.73,
+                    "overall_percentage": 16.31
                 },
                 {
                     "payment": "Venmo",
-                    "count": 97,
-                    "percentage": 17.73
+                    "cluster_count": 97,
+                    "cluster_percentage": 17.73,
+                    "overall_percentage": 16.26
                 }
             ],
             "discount_usage_rate": 41.32,
@@ -824,6 +1041,133 @@
         "total_unique_items": 25,
         "total_unique_payment": 6,
         "total_unique_locations": 50,
-        "total_unique_categories": 4
+        "total_unique_categories": 4,
+        "overall_items_purchase_rate": [
+            {
+                "item": "Blouse",
+                "overall_count": 171,
+                "overall_percentage": 4.38
+            },
+            {
+                "item": "Pants",
+                "overall_count": 171,
+                "overall_percentage": 4.38
+            },
+            {
+                "item": "Jewelry",
+                "overall_count": 171,
+                "overall_percentage": 4.38
+            },
+            {
+                "item": "Shirt",
+                "overall_count": 169,
+                "overall_percentage": 4.33
+            },
+            {
+                "item": "Dress",
+                "overall_count": 166,
+                "overall_percentage": 4.26
+            },
+            {
+                "item": "Sweater",
+                "overall_count": 164,
+                "overall_percentage": 4.21
+            },
+            {
+                "item": "Jacket",
+                "overall_count": 163,
+                "overall_percentage": 4.18
+            },
+            {
+                "item": "Coat",
+                "overall_count": 161,
+                "overall_percentage": 4.13
+            },
+            {
+                "item": "Sunglasses",
+                "overall_count": 161,
+                "overall_percentage": 4.13
+            },
+            {
+                "item": "Belt",
+                "overall_count": 161,
+                "overall_percentage": 4.13
+            },
+            {
+                "item": "Sandals",
+                "overall_count": 160,
+                "overall_percentage": 4.1
+            },
+            {
+                "item": "Socks",
+                "overall_count": 159,
+                "overall_percentage": 4.08
+            },
+            {
+                "item": "Skirt",
+                "overall_count": 158,
+                "overall_percentage": 4.05
+            },
+            {
+                "item": "Scarf",
+                "overall_count": 157,
+                "overall_percentage": 4.03
+            },
+            {
+                "item": "Shorts",
+                "overall_count": 157,
+                "overall_percentage": 4.03
+            },
+            {
+                "item": "Hat",
+                "overall_count": 154,
+                "overall_percentage": 3.95
+            },
+            {
+                "item": "Handbag",
+                "overall_count": 153,
+                "overall_percentage": 3.92
+            },
+            {
+                "item": "Hoodie",
+                "overall_count": 151,
+                "overall_percentage": 3.87
+            },
+            {
+                "item": "Shoes",
+                "overall_count": 150,
+                "overall_percentage": 3.85
+            },
+            {
+                "item": "T-shirt",
+                "overall_count": 147,
+                "overall_percentage": 3.77
+            },
+            {
+                "item": "Sneakers",
+                "overall_count": 145,
+                "overall_percentage": 3.72
+            },
+            {
+                "item": "Boots",
+                "overall_count": 144,
+                "overall_percentage": 3.69
+            },
+            {
+                "item": "Backpack",
+                "overall_count": 143,
+                "overall_percentage": 3.67
+            },
+            {
+                "item": "Gloves",
+                "overall_count": 140,
+                "overall_percentage": 3.59
+            },
+            {
+                "item": "Jeans",
+                "overall_count": 124,
+                "overall_percentage": 3.18
+            }
+        ]
     }
 }

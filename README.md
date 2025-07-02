@@ -1,100 +1,145 @@
-# 🛍️ 고객 쇼핑 트렌드 대시보드 TOOL
+```
+🛍️ AI 기반 고객 페르소나 및 마케팅 대시보드
+이 프로젝트는 고객 쇼핑 데이터를 K-평균 클러스터링으로 분석하여 의미 있는 고객 그룹을 정의하고, 각 그룹의 특징을 시각화하는 웹 대시보드입니다. AI(Google Gemini)를 통해 각 고객 그룹을 대표하는 가상의 페르소나를 생성하고, 데이터 기반의 맞춤형 마케팅 전략을 제안받을 수 있습니다.
 
-이 프로젝트는 고객 쇼핑 데이터를 분석하여 고객 그룹을 나누고, 각 그룹별 특징을 시각화하여 맞춤형 마케팅 아이디어를 제공하는 웹 대시보드입니다.
+✨ Live Demo: https://shoppingtrendai.netlify.app/
 
-**Live Demo:** [https://shoppingtrendai.netlify.app/](https://shoppingtrendai.netlify.app/)
+🚀 주요 기능
+고객 세분화 시각화: K-평균 클러스터링으로 도출된 7개의 고객 그룹별 핵심 지표(평균 연령, 구매액, 구독률 등)를 직관적으로 확인합니다.
 
-## 🚀 주요 기능
+상세 데이터 분석 대시보드: 각 그룹의 Top 5 구매 아이템, 카테고리, 주요 활동 지역, 시즌별 선호도 등을 다양한 차트(막대, 도넛, 파이 등)로 시각화합니다.
 
-- K-평균 클러스터링 기반 고객 세분화 결과 시각화
-- 클러스터별 주요 지표 (고객 수, 평균 연령, 구매 빈도 등) 표시
-- 세그먼트별 구매 특성 비교 (평균 구매액, 구독률 등)
-- AI 기반 마케팅 제안 (Gemini API 연동)
+클러스터 vs 전체 평균 비교: 특정 고객 그룹의 구매 패턴이 전체 고객 평균과 어떻게 다른지 혼합 차트(막대+선)를 통해 한눈에 비교하고 인사이트를 얻을 수 있습니다.
 
-## 🛠️ 기술 스택
+AI 페르소나 생성: Google AI가 각 클러스터의 데이터를 바탕으로, 해당 그룹을 대표하는 가상의 인물(이미지, 직업, 특징, 니즈)을 생성하여 고객에 대한 깊이 있는 이해를 돕습니다.
 
-- **Frontend:** React, TypeScript, Next.js (App Router)
-- **Styling:** Tailwind CSS
-- **Charts:** Chart.js
-- **Data Analysis (Offline):** Python, Jupyter Notebook (상세 과정은 아래 참고)
-- **Deployment:** Netlify
+AI 마케팅 전략 제안: 선택된 클러스터의 데이터 특성에 기반하여, 실행 가능한 구체적인 마케팅 액션 플랜을 AI에게 제안받을 수 있습니다.
 
----
+🛠️ 기술 스택
+Frontend: React, TypeScript, Next.js (App Router)
 
-## 📊 고객 쇼핑 트렌드 데이터 분석 과정 요약
+Styling: Tailwind CSS
 
-대시보드에 사용된 고객 세분화 데이터는 `shopping_trends_updated.csv` 파일에 대한 분석을 통해 얻어졌습니다. 전체 분석 과정과 코드는 아래 Jupyter Notebook에서 확인하실 수 있습니다.
+Charts: Chart.js, react-chartjs-2, chartjs-plugin-datalabels
+
+AI: Google Gemini API (@google/genai)
+
+Data Analysis (Offline): Python, Jupyter Notebook, Pandas, Scikit-learn
+
+Deployment: Netlify
+
+
+📊 데이터 분석 과정 요약
+대시보드에 사용된 고객 세분화 및 비교 데이터는 shopping_trends_updated.csv 파일에 대한 오프라인 분석을 통해 생성되었습니다. 전체 분석 과정과 코드는 아래 Jupyter Notebook에서 확인하실 수 있습니다.
+
+➡️ 전체 분석 과정 및 코드 보기
+
+1. 분석 목표
+고객 구매 데이터를 기반으로 의미 있는 고객 그룹(세그먼트)을 정의하고, 각 그룹의 고유한 특징을 프로파일링합니다.
+
+각 그룹의 구매 패턴이 전체 고객 평균과 어떻게 다른지 비교 분석할 수 있는 데이터를 생성하여, 대시보드에서 깊이 있는 인사이트를 제공하는 것을 목표로 합니다.
+
+2. 데이터 처리 및 모델링
+피처 선택: 고객 세분화를 위해 'Age', 'Purchase Amount (USD)', 'Subscription Status', 'Frequency of Purchases' 4가지 주요 피처를 사용했습니다.
+
+K-평균 클러스터링:
+
+최적 클러스터 개수(K) 결정: 엘보우 방법과 실루엣 분석을 통해 최적의 K값을 7로 결정했습니다.
+
+(참고: 아래 이미지는 실제 분석 결과 그래프로 교체해야 합니다.)
+결과 데이터 생성:
+
+각 클러스터별 Top 아이템, 카테고리, 지역, 시즌 데이터와 함께 전체 고객의 아이템별 평균 구매율 데이터를 overall_items_purchase_rate로 추가하여 JSON 파일을 생성했습니다.
+
+이 데이터를 통해 대시보드에서 '클러스터 vs 전체' 비교 차트 구현이 가능해졌습니다.
+
+3. 분석 결과의 대시보드 활용
+생성된 customer_segments_final.json 파일은 대시보드에서 각 클러스터의 특성을 시각화하고, AI 기능의 입력 정보로 사용됩니다.
+
+
+네, 알겠습니다. 프로젝트의 모든 기능과 과정을 반영하여, 바로 복사해서 사용할 수 있는 완성된 README.md 파일을 만들어 드리겠습니다.
+
+🛍️ AI 기반 고객 페르소나 및 마케팅 대시보드
+이 프로젝트는 고객 쇼핑 데이터를 K-평균 클러스터링으로 분석하여 의미 있는 고객 그룹을 정의하고, 각 그룹의 특징을 시각화하는 웹 대시보드입니다. AI(Google Gemini)를 통해 각 고객 그룹을 대표하는 가상의 페르소나를 생성하고, 데이터 기반의 맞춤형 마케팅 전략을 제안받을 수 있습니다.
+
+✨ Live Demo: https://shoppingtrendai.netlify.app/
+
+🚀 주요 기능
+고객 세분화 시각화: K-평균 클러스터링으로 도출된 7개의 고객 그룹별 핵심 지표(평균 연령, 구매액, 구독률 등)를 직관적으로 확인합니다.
+
+상세 데이터 분석 대시보드: 각 그룹의 Top 5 구매 아이템, 카테고리, 주요 활동 지역, 시즌별 선호도 등을 다양한 차트(막대, 도넛, 파이 등)로 시각화합니다.
+
+클러스터 vs 전체 평균 비교: 특정 고객 그룹의 구매 패턴이 전체 고객 평균과 어떻게 다른지 혼합 차트(막대+선)를 통해 한눈에 비교하고 인사이트를 얻을 수 있습니다.
+
+AI 페르소나 생성: Google AI가 각 클러스터의 데이터를 바탕으로, 해당 그룹을 대표하는 가상의 인물(이미지, 직업, 특징, 니즈)을 생성하여 고객에 대한 깊이 있는 이해를 돕습니다.
+
+AI 마케팅 전략 제안: 선택된 클러스터의 데이터 특성에 기반하여, 실행 가능한 구체적인 마케팅 액션 플랜을 AI에게 제안받을 수 있습니다.
+
+🛠️ 기술 스택
+Frontend: React, TypeScript, Next.js (App Router)
+
+Styling: Tailwind CSS
+
+Charts: Chart.js, react-chartjs-2, chartjs-plugin-datalabels
+
+AI: Google Gemini API (@google/genai)
+
+Data Analysis (Offline): Python, Jupyter Notebook, Pandas, Scikit-learn
+
+Deployment: Netlify
+
+📊 데이터 분석 과정 요약
+대시보드에 사용된 고객 세분화 및 비교 데이터는 shopping_trends_updated.csv 파일에 대한 오프라인 분석을 통해 생성되었습니다. 전체 분석 과정과 코드는 아래 Jupyter Notebook에서 확인하실 수 있습니다.
 
 ➡️ **[전체 분석 과정 및 코드 보기](./notebooks/Shopping_Trends.ipynb)**
 
+1. 분석 목표
+고객 구매 데이터를 기반으로 의미 있는 고객 그룹(세그먼트)을 정의하고, 각 그룹의 고유한 특징을 프로파일링합니다.
 
-### 1. 분석 목표
+각 그룹의 구매 패턴이 전체 고객 평균과 어떻게 다른지 비교 분석할 수 있는 데이터를 생성하여, 대시보드에서 깊이 있는 인사이트를 제공하는 것을 목표로 합니다.
 
-- 고객의 구매 행동 데이터(나이, 구매 금액, 구독 상태, 구매 빈도 등)를 분석하여 의미 있는 고객 그룹(세그먼트)을 정의합니다.
-- 각 세그먼트의 주요 특징을 파악하여, 이를 기반으로 대시보드에 시각화하고 맞춤형 마케팅 전략 수립에 활용할 수 있는 기초 자료를 생성하는 것을 목표로 합니다.
+2. 데이터 처리 및 모델링
+피처 선택: 고객 세분화를 위해 'Age', 'Purchase Amount (USD)', 'Subscription Status', 'Frequency of Purchases' 4가지 주요 피처를 사용했습니다.
 
-### 2. 데이터 출처 및 설명
+K-평균 클러스터링:
 
-- **사용한 데이터셋:** `shopping_trends_updated.csv` 파일
-  - _(https://www.kaggle.com/datasets/bhadramohit/customer-shopping-latest-trends-dataset)_
-- **주요 포함 정보:** (총 18개 컬럼)
-  - Customer ID, Age, Gender, Item Purchased, Category
-  - Purchase Amount (USD), Location, Size, Color, Season
-  - Review Rating, Subscription Status, Shipping Type
-  - Discount Applied, Promo Code Used, Previous Purchases
-  - Payment Method, Frequency of Purchases
-- 데이터 기본 탐색 결과, 결측치는 없는 것으로 확인되었습니다.
+최적 클러스터 개수(K) 결정: 엘보우 방법과 실루엣 분석을 통해 최적의 K값을 7로 결정했습니다.
 
-### 3. 분석 과정 및 방법론
+(참고: 아래 이미지는 실제 분석 결과 그래프로 교체해야 합니다.)
+결과 데이터 생성:
 
-#### 데이터 불러오기 및 초기 탐색
+각 클러스터별 Top 아이템, 카테고리, 지역, 시즌 데이터와 함께 전체 고객의 아이템별 평균 구매율 데이터를 overall_items_purchase_rate로 추가하여 JSON 파일을 생성했습니다.
 
-- Pandas 라이브러리를 사용하여 CSV 데이터를 로드하고, 데이터의 기본적인 구조와 통계치를 확인했습니다. (`head()`, `tail()`, `info()`, `describe()` 사용)
+이 데이터를 통해 대시보드에서 '클러스터 vs 전체' 비교 차트 구현이 가능해졌습니다.
 
-#### 피처 선택 및 전처리
+3. 분석 결과의 대시보드 활용
+생성된 customer_segments_final.json 파일은 대시보드에서 각 클러스터의 특성을 시각화하고, AI 기능의 입력 정보로 사용됩니다.
 
-- 고객 세분화를 위해 'Age', 'Purchase Amount (USD)', 'Subscription Status', 'Frequency of Purchases' 4가지 주요 피처를 선택했습니다.
-- 범주형 데이터는 Pandas의 `get_dummies()` 함수를 사용하여 원-핫 인코딩 처리 후, 모든 데이터를 숫자형으로 변환했습니다.
+⚙️ 시작하기
+프로젝트를 로컬 환경에서 실행하는 방법은 다음과 같습니다.
 
-#### 데이터 스케일링
+저장소 복제(Clone)
 
-- 선택된 숫자형 피처들에 대해 Scikit-learn의 `StandardScaler`를 사용하여 표준화 스케일링을 진행했습니다. 이는 K-평균 클러스터링 알고리즘의 성능 향상을 위함입니다.
+Bash
 
-#### 고객 세분화 모델링 (K-평균 클러스터링)
+git clone https://github.com/hagalaz-star/shopping_trend.git
+cd shopping_trend
+의존성 설치
 
-- **최적 클러스터 개수(K) 결정:**
-  - **엘보우 방법(Elbow Method):** K값 변화에 따른 WCSS 감소폭을 시각화하여 분석했습니다.
-    ![Elbow Method for Optimal K](./notebooks/images/elbow_method.png)
-    _(↑ `elbow_method.png`는 `notebooks/images/` 폴더에 저장되어야 합니다.)_
-  - **실루엣 분석(Silhouette Analysis):** 평균 실루엣 점수를 계산했으며, K=7일 때 0.5176으로 가장 높은 점수를 보여 최종 클러스터 수를 7개로 결정했습니다.
-    ![Silhouette Analysis for Optimal K](./notebooks/images/silhouette_analysis.png)
-    _(↑ `silhouette_analysis.png`는 `notebooks/images/` 폴더에 저장되어야 합니다.)_
-- **최종 모델 학습:** K=7로 설정하여 K-평균 클러스터링 모델을 학습시키고, 각 고객에게 클러스터 레이블을 할당했습니다.
+Bash
 
-#### 세그먼트 프로파일링 및 결과 저장
+npm install
+환경 변수 설정
 
-- 생성된 7개 클러스터의 특징(평균 연령, 구매액, 구독률, 주요 구매 빈도 등)을 분석하고, 설명적인 이름 및 마케팅 제안을 정의했습니다. (예: "2주 주기 실속형 고객")
-- 이 모든 정보를 `customer_segments_k7.json` 파일로 저장하여, 대시보드 애플리케이션에서 활용하도록 준비했습니다.
+프로젝트 루트에 .env.local 파일을 생성합니다.
 
-#### (참고) PCA를 활용한 시각화
+Google AI Studio에서 발급받은 API 키를 아래와 같이 추가합니다.
 
-- K-평균 클러스터링 결과를 시각적으로 탐색하기 위해 PCA를 사용하여 데이터를 2차원으로 축소하고, 클러스터별로 산점도를 시각화했습니다.
-  ![K-Means Clustering (K=7) visualized with 2D PCA](./notebooks/images/pca_clusters_k7.png)
-  _(↑ `pca_clusters_k7.png`는 `notebooks/images/` 폴더에 저장되어야 합니다.)_
+GEMINI_API_KEY=여러분의_API_키를_여기에_입력하세요
+개발 서버 실행
 
-### 4. 사용된 주요 기술 스택 (데이터 분석)
+Bash
 
-- Python
-- **[Pandas](https://pandas.pydata.org/)** (데이터 조작 및 분석)
-- NumPy (수치 계산)
-- Scikit-learn (StandardScaler, PCA, KMeans, silhouette_score 등 머신러닝)
-- Matplotlib, Seaborn (데이터 시각화)
-
-### 5. 분석 결과의 대시보드 애플리케이션 활용 방안
-
-`customer_segments_k7.json` 파일의 데이터는 대시보드에서 다음과 같이 활용됩니다:
-
-- 각 고객 그룹의 특징(고객 수, 평균 연령, 평균 구매액 등)을 차트와 카드로 시각화합니다.
-- AI 마케팅 제안 기능의 기초 입력 정보로 사용됩니다.
-
----
+npm run dev
+이제 브라우저에서 http://localhost:3000으로 접속하여 대시보드를 확인할 수 있습니다.
+```
