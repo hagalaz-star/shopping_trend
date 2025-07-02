@@ -1,4 +1,5 @@
 import { MyDataType } from "@/types/types";
+import Image from "next/image";
 
 interface ClusterProps {
   groups: MyDataType[];
@@ -16,8 +17,15 @@ export default function Header({
   return (
     <header className="bg-blue-950 ">
       <div className="mx-auto flex max-w-7xl h-full items-center justify-between  px-10 py-10">
-        <h1 className="bg-blue-950 font-bold text-2xl text-white">
-          AI Persona
+        <h1 className="bg-blue-950 font-bold text-2xl text-white flex items-center gap-6">
+          <Image
+            src="/images/ai-logo.png"
+            alt="AI Persona Logo"
+            width={60}
+            height={32}
+            className="rounded-2xl -ml-20"
+          />
+          <span>AI Persona</span>
         </h1>
         <select
           className="text-white text-2xl bg-blue-600 rounded-2xl p-3"
