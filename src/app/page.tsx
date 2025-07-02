@@ -19,7 +19,7 @@ export default function Home() {
 
   useEffect(() => {
     axios
-      .get("/data/customer_segments_final_updated.json")
+      .get("/data/customer_segments_final.json")
       .then((response) => {
         console.log("Fetched data structure:", response.data);
         setCustomerData(response.data);
