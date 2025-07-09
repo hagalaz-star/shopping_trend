@@ -102,3 +102,34 @@ export async function logout() {
   await supabase.auth.signOut();
   return redirect("/login");
 }
+
+export default async function savePersona(
+  imageUrl: string,
+  description: string,
+  clusterName: string
+) {
+  const supabase = await createClient();
+
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (!user) {
+    return { error: "로그인이 필요합니다." };
+  }
+
+  const { data, error } = await supabase.from(`personas`).insert([
+    {
+      user_id: user.id,
+      image_url: imageUrl,
+      description: description,
+      cluster_name: clusterName,
+    },
+  ]);
+
+  if (error) {
+    console.error("DB 저장 에러:", error);
+    return { error: "페르소나를 저장하는 데 실패했습니다." };
+  }
+  return { success: "페르소나가 성공적으로 저장되었습니다!" };
+}

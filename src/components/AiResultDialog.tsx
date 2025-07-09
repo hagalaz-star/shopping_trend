@@ -1,4 +1,4 @@
-import { MyDataType } from "@/types/types";
+import { MyDataType, CustomerData } from "@/types/types";
 import axios from "axios";
 import { useState } from "react";
 import {
@@ -13,9 +13,12 @@ import {
 import Image from "next/image";
 
 import { Button } from "@/components/ui/button";
+import savePersona from "@/app/login/actions";
 
 interface aiResultDialogProps {
   clusterData: MyDataType | null;
+  selectedClusterId: number | null;
+  personaData: CustomerData;
 }
 
 interface AiResultType {
@@ -23,7 +26,11 @@ interface AiResultType {
   description: string;
 }
 
-function AiResultDialog({ clusterData }: aiResultDialogProps) {
+function AiResultDialog({
+  clusterData,
+  personaData,
+  selectedClusterId,
+}: aiResultDialogProps) {
   const [aiOpen, setAiOpen] = useState<boolean>(false);
   const [aiResult, setAiResult] = useState<AiResultType | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -70,6 +77,27 @@ function AiResultDialog({ clusterData }: aiResultDialogProps) {
       console.error("AI 제안 요청실패 :", err);
     } finally {
       setIsLoading(false);
+    }
+  };
+
+  const handleSave = async () => {
+    if (!aiResult && !clusterData) return;
+
+    const selectedCluster = personaData.cluster_segments.find(
+      (c) => c.cluster_id === selectedClusterId
+    );
+    if (!aiResult || !selectedCluster) return;
+
+    const result = await savePersona(
+      aiResult.imageUrl,
+      aiResult.description,
+      selectedCluster.cluster_name
+    );
+
+    if (result.error) {
+      alert(result.error);
+    } else if (result.success) {
+      alert(result.success);
     }
   };
 
@@ -120,6 +148,15 @@ function AiResultDialog({ clusterData }: aiResultDialogProps) {
                 <p className="mt-10 text-base text-gray-700 leading-relaxed whitespace-pre-wrap">
                   {aiResult?.description}
                 </p>
+              </div>
+
+              <div className="pt-4 border-t">
+                <button
+                  onClick={handleSave}
+                  className="w-full justify-center rounded-md bg-green-600 py-2 px-4 text-sm font-semibold text-white shadow-sm hover:bg-green-500"
+                >
+                  이 페르소나 저장하기
+                </button>
               </div>
             </div>
           )}

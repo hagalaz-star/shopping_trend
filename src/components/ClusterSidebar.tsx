@@ -91,7 +91,10 @@ export default function ClusterSidebar({
           </div>
 
           <div className="flex justify-center items-center w-full">
-            <AiResultDialog clusterData={sideCluster} />
+            <AiResultDialog
+              clusterData={sideCluster}
+              selectedClusterId={selectedClusterId}
+            />
           </div>
         </div>
       ) : (
