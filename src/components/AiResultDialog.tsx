@@ -13,7 +13,7 @@ import {
 import Image from "next/image";
 
 import { Button } from "@/components/ui/button";
-import savePersona from "@/app/login/actions";
+import { savePersona } from "@/app/login/actions";
 
 interface aiResultDialogProps {
   clusterData: MyDataType | null;
@@ -35,6 +35,7 @@ function AiResultDialog({
   const [aiResult, setAiResult] = useState<AiResultType | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
+  const [personaTitle, setPersonaTitle] = useState<string>("");
 
   const handlePersona = async () => {
     if (!clusterData) {
@@ -81,23 +82,40 @@ function AiResultDialog({
   };
 
   const handleSave = async () => {
-    if (!aiResult && !clusterData) return;
+    if (!personaTitle.trim()) {
+      alert("페르소나 이름 정하쇼");
+      return;
+    }
+
+    if (!personaData || !personaData.cluster_segments) {
+      console.error("Persona data is not ready.");
+      return;
+    }
+    console.log("선택된 클러스터 ID:", selectedClusterId); // ★ 추가
 
     const selectedCluster = personaData.cluster_segments.find(
       (c) => c.cluster_id === selectedClusterId
     );
-    if (!aiResult || !selectedCluster) return;
+    console.log("찾은 클러스터 정보:", selectedCluster); // ★ 추가
 
-    const result = await savePersona(
-      aiResult.imageUrl,
-      aiResult.description,
-      selectedCluster.cluster_name
-    );
+    if (!aiResult || !selectedCluster) {
+      console.error("AI 결과나 선택된 클러스터가 없습니다.");
+      return;
+    }
+
+    const personaToSave = {
+      title: personaTitle,
+      imageUrl: aiResult.imageUrl,
+      description: aiResult.description,
+      clusterName: selectedCluster.cluster_name,
+    };
+    const result = await savePersona(personaToSave);
 
     if (result.error) {
       alert(result.error);
     } else if (result.success) {
       alert(result.success);
+      setPersonaTitle("");
     }
   };
 
@@ -148,6 +166,23 @@ function AiResultDialog({
                 <p className="mt-10 text-base text-gray-700 leading-relaxed whitespace-pre-wrap">
                   {aiResult?.description}
                 </p>
+              </div>
+
+              <div className="mt-6 space-y-2">
+                <label
+                  htmlFor="persona-title"
+                  className="text-sm font-medium leading-none"
+                >
+                  페르소나 제목
+                </label>
+                <input
+                  id="persona-title"
+                  type="text"
+                  value={personaTitle}
+                  onChange={(e) => setPersonaTitle(e.target.value)}
+                  placeholder="예: 20대 패션 얼리어답터"
+                  className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
+                />
               </div>
 
               <div className="pt-4 border-t">

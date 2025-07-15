@@ -16,19 +16,19 @@ export default function Header({
 
   return (
     <header className="bg-blue-950 ">
-      <div className="mx-auto flex max-w-7xl h-full items-center justify-between  px-10 py-10">
-        <h1 className="bg-blue-950 font-bold text-2xl text-white flex items-center gap-6">
+      <div className="mx-auto flex max-w-7xl flex-col  items-center gap-6 px-4 py-5 md:flex-row md:justify-between md:px-10 md:py-10">
+        <h1 className="flex items-center gap-6 text-xl font-bold text-white bg-blue-950 md:text-2xl">
           <Image
             src="/images/ai-logo.png"
             alt="AI Persona Logo"
-            width={60}
+            width={50}
             height={32}
-            className="rounded-2xl -ml-20"
+            className="rounded-2xl md:width={60}"
           />
           <span>AI Persona</span>
         </h1>
         <select
-          className="text-white text-2xl bg-blue-600 rounded-2xl p-3"
+          className="w-full text-white text-lg bg-blue-600 rounded-2xl p-3 md:w-auto md:text-2xl"
           value={selectedClusterId ?? ""}
           onChange={(e) => onClusterSelect(Number(e.target.value))}
         >

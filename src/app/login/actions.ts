@@ -103,11 +103,12 @@ export async function logout() {
   return redirect("/login");
 }
 
-export default async function savePersona(
-  imageUrl: string,
-  description: string,
-  clusterName: string
-) {
+export async function savePersona(persona: {
+  title: string;
+  imageUrl: string;
+  description: string;
+  clusterName: string;
+}) {
   const supabase = await createClient();
 
   const {
@@ -118,18 +119,44 @@ export default async function savePersona(
     return { error: "로그인이 필요합니다." };
   }
 
-  const { data, error } = await supabase.from(`personas`).insert([
-    {
-      user_id: user.id,
-      image_url: imageUrl,
-      description: description,
-      cluster_name: clusterName,
-    },
-  ]);
+  const { data, error } = await supabase
+    .from(`personas`)
+    .insert([
+      {
+        title: persona.title,
+        user_id: user.id,
+        image_url: persona.imageUrl,
+        description: persona.description,
+        cluster_name: persona.clusterName,
+      },
+    ])
+    .select();
 
   if (error) {
-    console.error("DB 저장 에러:", error);
+    console.error("Supabase 저장 에러:", error);
+
+    if (error.code === "42501") {
+      return { error: "데이터 저장 권한이 없습니다. 관리자에게 문의하세요." };
+    }
     return { error: "페르소나를 저장하는 데 실패했습니다." };
   }
-  return { success: "페르소나가 성공적으로 저장되었습니다!" };
+  return { success: "페르소나가 성공적으로 저장되었습니다!", data: data };
+}
+
+export async function deletePersona(personaId: string) {
+  const supabase = await createClient();
+
+  const { error } = await supabase
+    .from("personas")
+    .delete()
+    .eq("id", personaId);
+
+  if (error) {
+    console.error("삭제 에러:", error);
+    return { error: "삭제에 실패했습니다." };
+  }
+
+  revalidatePath("/my-page");
+
+  return { success: "성공적으로 삭제되었습니다." };
 }

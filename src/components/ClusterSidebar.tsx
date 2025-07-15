@@ -1,5 +1,5 @@
 import React from "react";
-import { MyDataType } from "../types/types";
+import { MyDataType, CustomerData } from "../types/types";
 import {
   HeartMinus,
   WalletCards,
@@ -10,28 +10,42 @@ import {
 } from "lucide-react";
 
 import AiResultDialog from "./AiResultDialog";
+import { Separator } from "./ui/separator";
+import { User } from "@supabase/supabase-js";
+import UserMenu from "./UserMenu";
 
 interface ClusterSidebarProps {
-  groups: MyDataType[];
+  groups: MyDataType[] | null;
   selectedClusterId: number | null;
+  personaData: CustomerData | null;
+  user: User | null; // user prop 추가
 }
 
 export default function ClusterSidebar({
   groups,
   selectedClusterId,
+  personaData,
+  user,
 }: ClusterSidebarProps) {
-  const sideCluster = groups.find(
+  const sideCluster = groups?.find(
     (group) => selectedClusterId === group.cluster_id
   );
 
   const formatPercentManual = (rate: number) => {
     return (rate * 100).toFixed(1) + " %";
   };
+  if (!personaData) {
+    return null; // 혹은 <p>데이터 로딩 중...</p>
+  }
+
   return (
     <div className="h-full bg-blue-950 p-4 text-white flex flex-col ">
-      <h2 className="text-3xl font-bold m-4 text-center flex-shrink-0">
-        Basic information
-      </h2>
+      <div className="text-center ">
+        <UserMenu user={user} />
+        <h1 className="mt-5 font-bold text-2xl">Basic Information</h1>
+      </div>
+
+      <Separator className="my-4" />
 
       {sideCluster ? (
         <div className=" flex-1 overflow-y-auto space-y-6 px-2">
@@ -94,6 +108,7 @@ export default function ClusterSidebar({
             <AiResultDialog
               clusterData={sideCluster}
               selectedClusterId={selectedClusterId}
+              personaData={personaData}
             />
           </div>
         </div>
