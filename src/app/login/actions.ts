@@ -57,27 +57,7 @@ export async function signup(formData: FormData) {
   redirect("/auth/check-email");
 }
 
-// export async function updatePassword(formData: FormData) {
-//   const supabase = await createClient();
-
-//   const password = formData.get("password") as string;
-//   // type-casting here for convenience
-//   // in practice, you should validate your inputs
-
-//   // 1. 비밀번호 업데이트를 위해 updateUser 함수를 사용합니다.
-//   const { error } = await supabase.auth.updateUser({ password: password });
-
-//   if (error) {
-//     console.error("--- 비밀번호 변경 에러 ---", error.message);
-//     // 2. 실패 시, 에러 메시지와 함께 비밀번호 변경 페이지로 다시 보냅니다.
-//     return redirect(`/auth/update-password?error=${error.message}`);
-//   }
-
-//   return redirect(
-//     "/login?message=Password updated successfully. Please log in."
-//   );
-// }
-
+// 비밀번호 재설정 링크
 export async function sendResetLink(formData: FormData) {
   const supabase = await createClient();
 
@@ -103,6 +83,7 @@ export async function logout() {
   return redirect("/login");
 }
 
+// ai 페르소나 데이터 저장 기능
 export async function savePersona(persona: {
   title: string;
   imageUrl: string;
@@ -143,6 +124,7 @@ export async function savePersona(persona: {
   return { success: "페르소나가 성공적으로 저장되었습니다!", data: data };
 }
 
+// ai 페르소나 데이터 저장 삭제 기능
 export async function deletePersona(personaId: string) {
   const supabase = await createClient();
 
@@ -159,4 +141,22 @@ export async function deletePersona(personaId: string) {
   revalidatePath("/my-page");
 
   return { success: "성공적으로 삭제되었습니다." };
+}
+
+// 게스트 로그인 기능
+export async function loginAsGuest() {
+  const email = process.env.GUEST_EMAIL!;
+  const password = process.env.GUEST_PASSWORD!;
+
+  const supabase = await createClient();
+
+  const { error } = await supabase.auth.signInWithPassword({ email, password });
+
+  if (error) {
+    console.error("게스트 로그인 에러:", error);
+    redirect("/login?message=게스트 로그인에 실패했습니다.");
+  }
+
+  revalidatePath("/", "layout"); //최신 장소인지 확인
+  return redirect("/");
 }

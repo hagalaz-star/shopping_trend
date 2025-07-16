@@ -28,8 +28,12 @@ export default function UserMenu({ user }: { user: User | null }) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="secondary">
-          <span className="font-bold">반갑습니다 !! {displayName}님</span>
+        <Button variant="secondary" className="w-full justify-start">
+          <div className="flex items-center gap-2 overflow-hidden">
+            <span className="font-bold truncate">
+              반갑습니다 !! {displayName}님
+            </span>
+          </div>
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56" align="end">

@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { login } from "./actions";
 import { useSearchParams } from "next/navigation";
+import { loginAsGuest } from "./actions";
 
 export default function LoginPage() {
   const searchParams = useSearchParams();
@@ -57,6 +58,15 @@ export default function LoginPage() {
               Log in
             </button>
           </div>
+        </form>
+
+        <form
+          action={loginAsGuest}
+          className="flex items-center justify-between gap-4"
+        >
+          <button className="flex-1 justify-center rounded-md bg-gray-400 py-2 px-4 font-semibold text-white shadow-sm hover:bg-indigo-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 mt-5">
+            Guest login
+          </button>
         </form>
         <div className="flex mt-4 text-center">
           <Link href="/signup" className="text-gray-600 hover:underline flex-1">
