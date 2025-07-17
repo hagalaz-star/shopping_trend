@@ -2,14 +2,11 @@
 
 import Link from "next/link";
 import { login } from "./actions";
-import { useSearchParams } from "next/navigation";
 import { loginAsGuest } from "./actions";
+import LoginMessage from "./LoginMessage";
+import { Suspense } from "react";
 
 export default function LoginPage() {
-  const searchParams = useSearchParams();
-  const message = searchParams.get("message");
-  const errorMessage = searchParams.get("error");
-
   return (
     <div className="flex flex-col min-h-screen items-center justify-center bg-gray-400">
       <div className="w-full max-w-2xl bg-white rounded-2xl p-8 shadow-md">
@@ -80,18 +77,9 @@ export default function LoginPage() {
             Did you forget your password?
           </Link>
         </div>
-
-        {/* 성공 또는 에러 메시지를 보여주는 부분 */}
-        {message && (
-          <div className="mt-4 rounded-md border border-green-200 bg-green-50 p-3 text-center">
-            <p className="text-sm font-medium text-green-800">{message}</p>
-          </div>
-        )}
-        {errorMessage && (
-          <div className="mt-4 rounded-md border border-red-200 bg-red-50 p-3 text-center">
-            <p className="text-sm font-medium text-red-800">{errorMessage}</p>
-          </div>
-        )}
+        <Suspense fallback={null}>
+          <LoginMessage />
+        </Suspense>
       </div>
     </div>
   );
