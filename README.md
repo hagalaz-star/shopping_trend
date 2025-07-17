@@ -59,20 +59,20 @@
 
 4.  **환경 변수 설정 (.env.local)**
 
-    - 프로젝트 루트에 `.env.local` 파일을 생성합니다.
-    - Google AI Studio에서 발급받은 API 키를 아래와 같이 추가합니다.
+- 프로젝트 루트에 `.env.local` 파일을 생성합니다.
+- Google AI Studio에서 발급받은 API 키를 아래와 같이 추가합니다.
 
-    ```bash
-     NEXT_PUBLIC_SUPABASE_URL=당신의_Supabase_프로젝트_URL
-     NEXT_PUBLIC_SUPABASE_ANON_KEY=당신의_Supabase_anon_key
+  ```bash
+   NEXT_PUBLIC_SUPABASE_URL=당신의_Supabase_프로젝트_URL
+   NEXT_PUBLIC_SUPABASE_ANON_KEY=당신의_Supabase_anon_key
 
-    # Google Gemini
-    GEMINI_API_KEY=당신의_Gemini_API_키
+  # Google Gemini
+  GEMINI_API_KEY=당신의_Gemini_API_키
 
-    # Guest Login
-    GUEST_EMAIL=Supabase에서_생성한_게스트_이메일
-    GUEST_PASSWORD=Supabase에서_생성한_게스트_비밀번호
-    ```
+  # Guest Login
+  GUEST_EMAIL=Supabase에서_생성한_게스트_이메일
+  GUEST_PASSWORD=Supabase에서_생성한_게스트_비밀번호
+  ```
 
 5.  **개발 서버 실행 (Run Development Server)**
     ```bash
