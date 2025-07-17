@@ -49,30 +49,30 @@
 
 3.  **Supabase 프로젝트 설정**
 
-- Supabase에서 새 프로젝트를 생성합니다.
+    - Supabase에서 새 프로젝트를 생성합니다.
 
-- SQL Editor에서 personas 테이블 생성 스크립트를 실행합니다. (이전 대화 내용 참고)
+    - SQL Editor에서 personas 테이블 생성 스크립트를 실행합니다. (이전 대화 내용 참고)
 
-- Authentication > Providers 메뉴에서 Email과 Google 로그인을 활성화합니다.
+    - Authentication > Providers 메뉴에서 Email과 Google 로그인을 활성화합니다.
 
-- Authentication > Users 메뉴에서 게스트 로그인을 위한 계정을 수동으로 생성합니다.
+    - Authentication > Users 메뉴에서 게스트 로그인을 위한 계정을 수동으로 생성합니다.
 
 4.  **환경 변수 설정 (.env.local)**
 
-- 프로젝트 루트에 `.env.local` 파일을 생성합니다.
-- Google AI Studio에서 발급받은 API 키를 아래와 같이 추가합니다.
+    - 프로젝트 루트에 `.env.local` 파일을 생성합니다.
+    - Google AI Studio에서 발급받은 API 키를 아래와 같이 추가합니다.
 
-  ```bash
-   NEXT_PUBLIC_SUPABASE_URL=당신의_Supabase_프로젝트_URL
-   NEXT_PUBLIC_SUPABASE_ANON_KEY=당신의_Supabase_anon_key
+      ```bash
+      NEXT_PUBLIC_SUPABASE_URL=당신의_Supabase_프로젝트_URL
+      NEXT_PUBLIC_SUPABASE_ANON_KEY=당신의_Supabase_anon_key
 
-  # Google Gemini
-  GEMINI_API_KEY=당신의_Gemini_API_키
+      # Google Gemini
+      GEMINI_API_KEY=당신의_Gemini_API_키
 
-  # Guest Login
-  GUEST_EMAIL=Supabase에서_생성한_게스트_이메일
-  GUEST_PASSWORD=Supabase에서_생성한_게스트_비밀번호
-  ```
+      # Guest Login
+      GUEST_EMAIL=Supabase에서_생성한_게스트_이메일
+      GUEST_PASSWORD=Supabase에서_생성한_게스트_비밀번호
+      ```
 
 5.  **개발 서버 실행 (Run Development Server)**
     ```bash
