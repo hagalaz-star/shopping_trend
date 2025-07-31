@@ -1,4 +1,4 @@
-import Backbutton from "@/components/Backbutton";
+import Backbutton from "@/components/features/Backbutton";
 
 export default function MyPageLayout({
   children,

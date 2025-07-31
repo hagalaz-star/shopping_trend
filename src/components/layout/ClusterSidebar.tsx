@@ -1,5 +1,5 @@
 import React from "react";
-import { MyDataType, CustomerData } from "../types/types";
+import { MyDataType, CustomerData } from "../../types/types";
 import {
   HeartMinus,
   WalletCards,
@@ -9,10 +9,10 @@ import {
   MousePointerClick,
 } from "lucide-react";
 
-import AiResultDialog from "./AiResultDialog";
-import { Separator } from "./ui/separator";
+import AiResultDialog from "../features/AiResultDialog";
+import { Separator } from "../ui/separator";
 import { User } from "@supabase/supabase-js";
-import UserMenu from "./UserMenu";
+import UserMenu from "../auth/UserMenu";
 
 interface ClusterSidebarProps {
   groups: MyDataType[] | null;

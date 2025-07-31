@@ -1,9 +1,9 @@
 "use client";
 
-import Header from "@/components/Header";
+import Header from "@/components/layout/Header";
 import DashboardLayout from "@/components/layout/DashboardLayout";
-import ClusterSidebar from "@/components/ClusterSidebar";
-import SegmentDetailsView from "@/components/SegmentDetailsView";
+import ClusterSidebar from "@/components/layout/ClusterSidebar";
+import SegmentDetailsView from "@/components/features/SegmentDetailsView";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { CustomerData } from "@/types/types";

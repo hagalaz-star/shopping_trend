@@ -1,5 +1,5 @@
 import { createClient } from "@/utils/supabase/server";
-import PersonaListItem from "@/components/PersonaListItem";
+import PersonaListItem from "@/components/mypage/PersonaListItem";
 
 export default async function MyPage() {
   const supabase = await createClient();

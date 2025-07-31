@@ -1,5 +1,5 @@
 import { createClient } from "@/utils/supabase/server";
-import UserMenu from "@/components/UserMenu";
+import UserMenu from "@/components/auth/UserMenu";
 
 export default async function AuthStatus() {
   const supabase = await createClient();

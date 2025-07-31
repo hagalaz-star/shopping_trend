@@ -1,7 +1,7 @@
 "use client";
 
 import { deletePersona } from "@/app/login/actions";
-import { Button } from "./ui/button";
+import { Button } from "../ui/button";
 import {
   Dialog,
   DialogContent,
@@ -10,7 +10,7 @@ import {
   DialogTrigger,
   DialogFooter,
   DialogClose,
-} from "./ui/dialog";
+} from "../ui/dialog";
 import Image from "next/image";
 import FormattedDescription from "./FormattedDescription";
 

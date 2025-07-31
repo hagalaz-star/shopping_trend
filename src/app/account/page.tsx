@@ -10,7 +10,7 @@ import { Badge } from "@/components/ui/badge";
 import { createClient } from "@/utils/supabase/server";
 import Link from "next/link";
 import { BadgeCheckIcon } from "lucide-react";
-import Backbutton from "@/components/Backbutton";
+import Backbutton from "@/components/features/Backbutton";
 import { Input } from "@/components/ui/input";
 
 // import UpdatePasswordPage from "../auth/update-password/page";
